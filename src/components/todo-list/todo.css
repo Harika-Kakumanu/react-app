@@ -1,0 +1,80 @@
+.outer-div{
+    display:flex;
+    
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background-color:white;
+}
+
+
+.input-class{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:3%;
+    width:450px;
+    height:55px;
+    font-size:25px;
+    box-shadow:2px 2px 2px 2px;
+    /*border:2px solid lightgrey;*/
+    
+}
+
+
+.todo-class{
+    display:flex;
+    justify-content:space-between;
+    width:450px;
+    height:55px;
+}
+
+.checkbox-class{
+    height:40px;
+    width:40px;
+    color:#f5f5f5;
+   /*padding:4%;*/
+   border-radius: 20px;
+   
+}
+.remove-button{
+    width:40px;
+    height:45px;
+    border-radius: 5px;
+    text-align:center;
+    font-size:20px;
+}
+.todo-input-class{
+    width: 300px;
+      height:35px;
+      font-size:25px;
+       box-shadow:2px 2px 2px 2px;
+    border:2px solid lightgrey;
+}
+.update-todo-input-class{
+     width: 300px;
+      height:35px;
+      font-size:25px;
+       box-shadow:2px 2px 2px 2px;
+    border:2px solid lightgrey;
+    text-decoration: line-through;
+}
+.footer{
+    display: flex;
+    width:450px;
+    justify-content:space-between;
+    font-size:15px;
+    
+}
+.three-elements{
+    display:flex;
+    width: 200px;
+    justify-content:space-evenly;
+}
+
+.clear-completed{
+    
+}
+.count{
+    margin-top:0px;
+}

@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../logo.svg";
+//import CountriesDashboardApp from '../../components/country/CountryDashboard.js'
+//import CountryDetails from '../../components/country/countryDetails.js'
+//import './components/country/countrystyle.css'
+
 
 function App() {
   return (
@@ -19,6 +23,11 @@ function App() {
           Learn React
         </a>
         <Link to="/page-1">Page 1</Link>
+        
+        
+          <Link to="/country-dashboard-app">Country</Link>
+        <Link to='/emoji-game'>Emoji Game</Link>
+        
       </header>
     </div>
   );
