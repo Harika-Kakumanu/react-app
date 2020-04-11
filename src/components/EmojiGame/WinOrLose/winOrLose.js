@@ -3,12 +3,12 @@ import {WinOrLoseComponent,ScoreComponent,GameStateComponent,PlayAgainButton} fr
 
 class WinOrLose extends React.Component{
     render(){
-        const {gameState,score}=this.props
+        const {isWon,score,selectedTheme,onPlayAgainClick}=this.props
         return(
-            <WinOrLoseComponent>
+            <WinOrLoseComponent selectedTheme={selectedTheme}>
                 <ScoreComponent>{score}</ScoreComponent>
-                <GameStateComponent>{gameState}</GameStateComponent>
-                <PlayAgainButton>Play Again</PlayAgainButton>
+                <GameStateComponent>{isWon}</GameStateComponent>
+                <PlayAgainButton onClick={onPlayAgainClick}>Play Again</PlayAgainButton>
             </WinOrLoseComponent>
         )
     }

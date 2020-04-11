@@ -1,4 +1,6 @@
-import { observable, action } from 'mobx'
+//................StoresCounter...............
+
+import { observable, action } from 'mobx';
 
 class CounterStore {
    @observable count = 0

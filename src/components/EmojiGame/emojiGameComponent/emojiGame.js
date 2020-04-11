@@ -2,7 +2,7 @@ import React from 'react';
 import {NavBar} from '../NavBar/navBar.js';
 import {HowToPlay} from '../HowToPlay/howToPlay.js';
 import {EmojiCard} from '../EmojiCard/emojiCard.js';
-import {winOrLose} from '../WinOrLose/winOrLose.js';
+import {WinOrLose} from '../WinOrLose/winOrLose.js';
 import {EmojisCardList} from './index.js';
 
 class EmojiGame extends React.Component{
@@ -41,30 +41,38 @@ class EmojiGame extends React.Component{
         
         renderEmojis=()=>{
             const {emojis}=this.state;
+            const {selectedTheme}=this.props;
             let emojiList=emojis.map((eachEmoji)=>
-                <EmojiCard key={eachEmoji.id} emoji={eachEmoji} onEmojiClick={this.onEmojiClick} selectedTheme=''></EmojiCard>
+                <EmojiCard key={eachEmoji.id} emoji={eachEmoji} onEmojiClick={this.onEmojiClick} selectedTheme= {selectedTheme}></EmojiCard>
             );
             return emojiList;
         }
         
         onEmojiClick=(emoji)=>{
-            //console.log(`in emoji game ${emoji.id}`)
-             const {emojis,score,gameState}=this.state;
+             const {emojis,score}=this.state;
              let emojisIndex=emojis.indexOf(emoji)
                 
             if(emoji.isClicked)
             {
-                this.setTopScore();
+                if(score===12){
+                    this.setState({
+                        gameState:'WON',
+                    })
+                }
+                else{
+                    this.setState({
+                        gameState:'LOSS',
+                    })
+                }
+                
             }
             else
             {
+                emojis[emojisIndex].isClicked=true;
                  this.incrementScore();
-                
+                  this.shuffleEmojis(emojis);
             }
-          emojis[emojisIndex].isClicked=true;
-            this.shuffleEmojis(emojis);
         }
-        
         
         shuffleEmojis=(emojis)=>{
             let i,j,temp;
@@ -76,9 +84,8 @@ class EmojiGame extends React.Component{
         }
          return emojis;    
         }
-        
-        
-
+    
+    
         incrementScore=()=>{
             const {score}=this.state
             this.setState({
@@ -88,54 +95,47 @@ class EmojiGame extends React.Component{
         
         
         onPlayAgainClick=()=>{
-            
+            this.setTopScore()
+            this.resetGame()
         }
         
         
         resetGame=()=>{
-            
+            const {emojis} =this.state
+
+            let emojisList=emojis.map((eachEmoji)=>{
+                eachEmoji.isClicked=false;
+                return eachEmoji;
+            })
+           this.setState({
+               score:0,gameState:'PLAYING',emojis:emojisList
+           }) 
+    
         }
         
         
         setTopScore=()=>{
-            const {score,topScore,emojis,gameState}=this.state
+            const {score,topScore}=this.state
             if(topScore<score){
-                if(topScore===emojis.length){
-                    this.setState({
-                        score:0,
-                        gameState:'WIN',
-                       topScore:score, 
-                    })
-                }
-                else{
-                    this.setState({
-                        score:0,
-                        topScore:score,
-                        gameState:'LOSS',
-                }) 
-                }
-            }
-            else{
                 this.setState({
-                    score:0,
+                    topScore:score
                 })
             }
-              //<winOrLose score={score} onPlayAgainClick={this.onPlayAgainClick()} isWon={gameState} selectedTheme=''></winOrLose>
-            
         }
         
-        
-        onChageTheme=()=>{
-            
-        }
     
     render(){
-        const{score,topScore}=this.state
+        
+        const{score,topScore,gameState}=this.state
+        const {selectedTheme,onChangeTheme}=this.props
+       
         return(
             <div>
-              <NavBar score={score} topScore={topScore} onChangeTheme={this.onChangeTheme}></NavBar>
-              <EmojisCardList>{this.renderEmojis()} </EmojisCardList>
-              <HowToPlay selectedTheme={''}></HowToPlay>
+              <NavBar score={score} topScore={topScore} 
+              onChangeTheme={onChangeTheme} selectedTheme={selectedTheme}></NavBar>
+              {(gameState === 'PLAYING')?  <EmojisCardList>{this.renderEmojis()} </EmojisCardList>:
+              <WinOrLose score={score} isWon={gameState} onPlayAgainClick={this.onPlayAgainClick} selectedTheme={selectedTheme}></WinOrLose>}
+              <HowToPlay selectedTheme={selectedTheme}></HowToPlay>
             </div>
             )
     }

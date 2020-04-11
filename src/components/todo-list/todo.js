@@ -10,7 +10,6 @@ class Input extends React.Component{
         super(props)
         this.state={
             todo:[],
-            
         }
     }
     enteringInput=(event)=>{

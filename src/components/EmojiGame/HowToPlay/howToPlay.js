@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {HowToPlayComponent,HowToPlayText,HowToPlayContent} from './howToPlayIndex.js'
 
 class HowToPlay extends React.Component{
@@ -6,7 +7,7 @@ class HowToPlay extends React.Component{
     render(){
         const {selectedTheme}=this.props;
         return(
-            <HowToPlayComponent>
+            <HowToPlayComponent selectedTheme={selectedTheme}>
                <HowToPlayText>How To Play?</HowToPlayText>
                <HowToPlayContent>Get points by clicking on an image but don't click on any image more than once!</HowToPlayContent>
             </HowToPlayComponent>

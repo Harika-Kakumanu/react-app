@@ -1,16 +1,17 @@
 import React from 'react';
-import {NavBarComponent,ScoresComponent} from './navBarIndex.js'
+import {NavBarComponent,ScoresComponent,Button} from './navBarIndex.js'
 
 class NavBar extends React.Component{
     render(){
-        const {score,topScore,selectedTheme,onChageTheme}=this.props;
+        const {score,topScore,onChangeTheme,selectedTheme}=this.props;
+        console.log(selectedTheme);
         return(
             <NavBarComponent>
               <h1>Emoji Game</h1>
               <ScoresComponent>
                  <p><strong>Score:{score}</strong></p>
                  <p><strong>TopScore:{topScore}</strong> </p>
-                 <button onClick={onChageTheme}>{selectedTheme}Theme</button> 
+                 <Button onClick={onChangeTheme} selectedTheme={selectedTheme}>{selectedTheme.displayText}Theme</Button> 
               </ScoresComponent>
             </NavBarComponent>
             )

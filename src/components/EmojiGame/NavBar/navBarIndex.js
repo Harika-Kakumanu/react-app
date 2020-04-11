@@ -8,5 +8,7 @@ const NavBarComponent=styled.div`
 
 const ScoresComponent =styled.div`
    ${tw `flex justify-around `}`
+
+const Button = styled.button`${tw`p-3 bg-blue-600`}`
    
-export{NavBarComponent,ScoresComponent}
+export{NavBarComponent,ScoresComponent,Button}
