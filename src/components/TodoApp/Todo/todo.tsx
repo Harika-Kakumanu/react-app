@@ -1,15 +1,25 @@
 import React from 'react'
-import {observable,action} from 'mobx';
+import {action} from 'mobx';
 import {observer} from 'mobx-react';
 
-import todoStore from '../../../stores/TodoStore/todoStore.js'
+import TodoModel from '../../../stores/models/todoModel';
+// import todoStore from '../../../stores/TodoStore/todoStore';
 
 import './index.css';
 
 //import {TodoListComponent,CheckBox,TodoListInputTag,RemoveButton} from './index.js';
 
+type todoProps={
+    id:string,
+    isCompleted:boolean
+   // onChangeSelectedFilter:Function
+    todo:TodoModel
+    onRemoveTodo:Function
+    // Todo:any
+}
+
 @observer
-class Todo extends React.Component{
+class Todo extends React.Component<todoProps>{
     @action.bound
     onUpdateTodoTitle(event){
         this.props.todo.onUpdateTodoTitle(event.target.value)
@@ -19,7 +29,7 @@ class Todo extends React.Component{
         this.props.todo.onCompleteTodo();
     }
     
-    onRemoveTodo = ()=>
+    onRemoveTodo = (event)=>
     {
         this.props.onRemoveTodo(event.target.id)
     }

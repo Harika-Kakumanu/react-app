@@ -1,11 +1,11 @@
 // import React, { Component } from 'react'
 import { observable, action } from 'mobx';
-import { observer } from 'mobx-react';
-import todoStore from '../TodoStore/todoStore.js'
+//import { observer } from 'mobx-react';
+//import todoStore from '../TodoStore/todoStore.js'
 
 class TodoModel{
     @observable title;
-    @observable isCompleted
+    @observable isCompleted;
     id
     
     constructor(newObject){
@@ -18,13 +18,10 @@ class TodoModel{
         this.title=value;
     }
     
-    
     @action.bound
     onCompleteTodo(){
         this.isCompleted = !this.isCompleted;
     }
-
-    
 }
 
 export default TodoModel;

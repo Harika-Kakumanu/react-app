@@ -1,14 +1,18 @@
 
 import React from 'react'
-import {observable,action} from 'mobx';
-import {observer} from 'mobx-react';
+import {action} from 'mobx';
+//import {observer} from 'mobx-react';
 
-import todoStore from '../../../stores/TodoStore/todoStore.js'
+import todoStore from '../../../stores/TodoStore/todoStore'
 
-@observer
-class TodoFooter extends React.Component{
+// @observer
+type todoProps={
+    onChangeSelectedFilter:Function
+}
+
+class TodoFooter extends React.Component<todoProps>{
     
-    @action.bound   
+     @action.bound   
     onChangeSelectedFilter(event){
         if(event.target.name==='All'){
             this.props.onChangeSelectedFilter('All')

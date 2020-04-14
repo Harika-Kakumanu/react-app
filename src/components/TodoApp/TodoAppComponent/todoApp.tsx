@@ -1,23 +1,25 @@
 import React from 'react';
-import {observable,action,computed} from 'mobx';
+import {action} from 'mobx';
 import {observer} from 'mobx-react';
 
-import todoStore from '../../../stores/TodoStore/todoStore.js'
- import {TodoModel} from '../../../stores/models/todoModel.js';
+import todoStore from '../../../stores/TodoStore/todoStore'
+ // import {TodoModel} from '../../../stores/models/todoModel';
  
-import {Todo} from '../Todo/todo.js';
+import {Todo} from '../Todo/todo';
+import {TodoFooter} from '../TodoFooter/todoFooter'
 
-//import {AddTodo} from '../AddTodo/addTodo.js';
-//import {TodoList} from '../TodoList/todoList.js'
-import {TodoFooter} from '../TodoFooter/todoFooter.js'
-
-import {TodoAppStyledComponent} from './index.js'
+// type todoAppProps={
+//   id:string,
+//   isCompleted:boolean
+//   onChangeSelectedFilter:Function
+  
+// }
 
 @observer
 class TodoApp extends React.Component{
     @action.bound
     onAddTodo(event){
-         if(event.key==='Enter' && event.target.value !=''){
+         if(event.key==='Enter' && event.target.value !==''){
              //todoStore.onChangeSelectedFilter('all');
              todoStore.onAddTodo(event.target.value)
               event.target.value=''
@@ -43,7 +45,7 @@ class TodoApp extends React.Component{
            
      renderTodoList =()=>{
          return todoStore.FilteredTodos.map(eachTodo =>
-                 <Todo key={eachTodo.id} id={eachTodo.id} todo={eachTodo} isCompleted={eachTodo.isCompleted} onRemoveTodo={this.onRemoveTodo}></Todo>
+             <Todo key={eachTodo.id} id={eachTodo.id} todo={eachTodo} isCompleted={eachTodo.isCompleted} onRemoveTodo={this.onRemoveTodo}></Todo>
          )
      }
      
@@ -111,8 +113,8 @@ class TodoApp extends React.Component{
         return(
         <div>
             <h1>Todos</h1>
-             <input type='text' value={this.todoTitle} onKeyPress={this.onAddTodo} placeholder="What need to write"
-             onChange={this.onChangeInput}/>
+             <input type='text' onKeyPress={this.onAddTodo} placeholder="What need to write"/>
+           
            
             {this.renderTodoList()}
           
@@ -124,3 +126,8 @@ class TodoApp extends React.Component{
 }
 
 export {TodoApp}
+
+
+ // <input type='text' value={this.todoTitle} onKeyPress={this.onAddTodo} placeholder="What need to write"
+ //             onChange={this.onChangeInput}/>
+           

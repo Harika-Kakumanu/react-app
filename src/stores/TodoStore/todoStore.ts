@@ -1,11 +1,17 @@
 import { observable, action,computed } from 'mobx'
 
-import TodoModel from '../models/todoModel.js'
+import TodoModel from '../models/todoModel'
+
+type todoObj = {
+    id:string,
+    title:string,
+    isCompleted : boolean
+}
 
 
 class TodoStore{
-    @observable todos;
-    @observable selectedFilter;
+    @observable todos : Array<TodoModel>;
+    @observable selectedFilter:string;
     
    constructor(){
        this.todos=[];
@@ -13,8 +19,8 @@ class TodoStore{
    }
    
     @action.bound
-    onAddTodo(title){
-      const  newObject={
+    onAddTodo(title:string){
+      const  newObject:todoObj={
             id:Math.random().toString(), 
             title,
             isCompleted:false,
@@ -29,24 +35,24 @@ class TodoStore{
     }
     
      @action.bound
-     onRemoveTodo(id){
-         this.todos =   this.todos.filter((each) =>  each.id !== id);
+     onRemoveTodo(id:string){
+         this.todos = this.todos.filter((each) =>  each.id !== id);
      }
   
      @action.bound
-     onChangeSelectedFilter(type){
+     onChangeSelectedFilter(type:string){
       this.selectedFilter=type;
      }
      
     @action.bound 
-    onClearCompleted(){
+    onClearCompleted():void{
         let dupList=this.todos.slice(0);
         let newDupList =dupList.filter(each=>  each.isCompleted === false);
               this.todos=newDupList;
     }
    
     @action.bound
-     @computed get ActiveTodosCount(){
+     @computed get ActiveTodosCount():number{
           let count=this.todos.filter(each=> {return each.isCompleted=== false})
               return count.length;
       }

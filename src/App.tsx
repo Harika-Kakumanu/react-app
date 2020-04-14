@@ -1,19 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import Page1 from "./components/Page1";
-import CountriesDashboardApp from './components/country/CountryDashboard.js'
-import CountryDetails from './components/country/countryDetails.js'
-import {EmojiGame} from './components/EmojiGame/emojiGameComponent/emojiGame.js' 
-import {CounterApp} from './components/CounterApp/counterApp.js'
-import {TodoApp} from './components/TodoApp/TodoAppComponent/todoApp.js'
-
-import "./App.css";
-import CounterPage from './components/CounterPage'
-
 
 import {observer} from 'mobx-react'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+
+import HomePage from "./components/HomePage";
+import Page1 from "./components/Page1";
+import CountriesDashboardApp from './components/country/CountryDashboard'
+import CountryDetails from './components/country/countryDetails'
+import {EmojiGame} from './components/EmojiGame/emojiGameComponent/emojiGame' 
+import {CounterApp} from './components/CounterApp/counterApp';
+import {TodoApp} from './components/TodoApp/TodoAppComponent/todoApp'
 import themeStore from './stores/ThemeStore'
+import "./App.css";
+
+
+
+
+
 // import {configure} from 'mobx'
 
 
@@ -73,9 +76,6 @@ render(){
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Switch>
-        <Route exact path="/counter-page">
-          <CounterPage/>
-        </Route>
         
         <Route exact path="/page-1">
           <Page1/>
