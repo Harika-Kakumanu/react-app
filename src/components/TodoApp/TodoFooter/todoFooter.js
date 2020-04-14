@@ -1,16 +1,16 @@
 
 import React from 'react'
 import {action} from 'mobx';
-//import {observer} from 'mobx-react';
+
 
 import todoStore from '../../../stores/TodoStore/todoStore'
 
-// @observer
-type todoProps={
-    onChangeSelectedFilter:Function
-}
 
-class TodoFooter extends React.Component<todoProps>{
+// type todoProps={
+//     onChangeSelectedFilter:Function
+// }
+
+class TodoFooter extends React.Component{
     
      @action.bound   
     onChangeSelectedFilter(event){

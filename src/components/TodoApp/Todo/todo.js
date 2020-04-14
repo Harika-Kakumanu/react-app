@@ -3,23 +3,22 @@ import {action} from 'mobx';
 import {observer} from 'mobx-react';
 
 import TodoModel from '../../../stores/models/todoModel';
-// import todoStore from '../../../stores/TodoStore/todoStore';
 
 import './index.css';
 
 //import {TodoListComponent,CheckBox,TodoListInputTag,RemoveButton} from './index.js';
 
-type todoProps={
-    id:string,
-    isCompleted:boolean
-   // onChangeSelectedFilter:Function
-    todo:TodoModel
-    onRemoveTodo:Function
-    // Todo:any
-}
+// type todoProps={
+//     id:string,
+//     isCompleted:boolean
+//   // onChangeSelectedFilter:Function
+//     todo:TodoModel
+//     onRemoveTodo:Function
+//     // Todo:any
+// }
 
 @observer
-class Todo extends React.Component<todoProps>{
+class Todo extends React.Component{
     @action.bound
     onUpdateTodoTitle(event){
         this.props.todo.onUpdateTodoTitle(event.target.value)

@@ -1,7 +1,5 @@
-// import React, { Component } from 'react'
+
 import { observable, action } from 'mobx';
-//import { observer } from 'mobx-react';
-//import todoStore from '../TodoStore/todoStore.js'
 
 class TodoModel{
     @observable title;
