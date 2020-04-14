@@ -20,7 +20,6 @@ class TodoApp extends React.Component{
     @action.bound
     onAddTodo(event){
          if(event.key==='Enter' && event.target.value !==''){
-             //todoStore.onChangeSelectedFilter('all');
              todoStore.onAddTodo(event.target.value)
               event.target.value=''
          }
