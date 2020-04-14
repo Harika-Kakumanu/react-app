@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -29,3 +30,6 @@ The build is minified and the filenames include the hashes.<br />
 Builds the app for production to the `build` folder.<br />
 
 Deploys the build folder to S3 bucket from cloud9 environment
+=======
+# react-app
+>>>>>>> 2c78e42789ca5972af33a43d78737982242aec62
