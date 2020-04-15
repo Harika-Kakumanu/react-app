@@ -10,11 +10,9 @@ import CountryDetails from './components/country/countryDetails'
 import {EmojiGame} from './components/EmojiGame/emojiGameComponent/emojiGame' 
 import {CounterApp} from './components/CounterApp/counterApp';
 import {TodoApp} from './components/TodoApp/TodoAppComponent/todoApp'
+import GridMemoryGame from './components/GridMemoryGamePage/GridMemoryGame/gridMemoryGame'
 import themeStore from './stores/ThemeStore'
 import "./App.css";
-
-
-
 
 
 // import {configure} from 'mobx'
@@ -79,6 +77,11 @@ render(){
         
         <Route exact path="/page-1">
           <Page1/>
+        </Route>
+        
+        
+         <Route exact path="/grid-game">
+          <GridMemoryGame/>
         </Route>
         
      

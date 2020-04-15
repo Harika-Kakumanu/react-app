@@ -22,6 +22,7 @@ function App() {
         >
           Learn React
         </a>
+        <Link to="/grid-game">Grid Memory Game</Link>  
         <Link to="/mobx-todo-app">Todo App</Link>  
         <Link to="/page-1">Page 1</Link>
         <Link to="/country-dashboard-app">Country</Link>
