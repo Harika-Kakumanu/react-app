@@ -16,3 +16,7 @@ const HeaderComponent=styled.div`
 const Button=styled.button`
     ${tw `border border-black rounded p-2`}`
 export {TopLevelComponent,LevelAndTheme,HeaderComponent,Button}
+
+
+// <button background="green"/> 
+// background:${(props)=> props.background};

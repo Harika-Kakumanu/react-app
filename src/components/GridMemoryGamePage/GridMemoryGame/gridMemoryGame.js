@@ -14,10 +14,10 @@ class GridMemoryGame extends React.Component{
     
     render(){
         return(
-            <Provider selectedTheme='' level={gameStore.level} topLevel={gameStore.topLevel} onChangeSelectedTheme=''>
+            <Provider selectedTheme='' cells={gameStore.cells} onCellClick={gameStore.onCellClick} level={gameStore.level} topLevel={gameStore.topLevel} onChangeSelectedTheme=''>
             <GridMemoryGameComponent>
                 <Header/> 
-                <GameField/>
+                <GameField />
             </GridMemoryGameComponent>
             </Provider>
             )

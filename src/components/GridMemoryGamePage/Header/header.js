@@ -16,7 +16,7 @@ class Header extends React.Component{
                 <TopLevelComponent>Top Level {this.props.topLevel}</TopLevelComponent>
                 <LevelAndTheme>
                     <p>Level {this.props.level}</p>
-                    <Button onClick=''>Mode: {}</Button>
+                    <Button >Mode: {}</Button>
                 </LevelAndTheme>
             </HeaderComponent>
             )

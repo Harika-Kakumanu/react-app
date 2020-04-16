@@ -36,7 +36,6 @@
     "js:build": "npm run build:css react-app-rewired build",
     "js:test": "react-app-rewired test",
     "js:eject": "react-app-rewired eject",
-
     "deploy": "export PUBLIC_URL=/2019/$C9_USER/react && npm run build && ./deploy.sh"
   },
   "eslintConfig": {
