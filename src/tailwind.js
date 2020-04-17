@@ -155,6 +155,8 @@ module.exports = {
       '300':'300px',
       '350':'350px',
       '400':'400px',
+      '700':'700px',
+      '900':'900px',
       
     },
     backgroundColor: theme => theme('colors'),

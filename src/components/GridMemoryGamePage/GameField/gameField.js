@@ -1,5 +1,5 @@
 import React from 'react';
-import {inject} from 'mobx-react';
+import {inject,observer} from 'mobx-react';
 import {data} from '../../../stores/gridData';
 import gameStore from '../../../stores/GameStore/gameStore'
 
@@ -7,19 +7,21 @@ import Cell from '../Cell/gridCell';
 
 import {GameFieldComponent} from './index.js'
 
-@inject('level','topLevel','onCellClick','cells')
+@observer
 class GameField extends React.Component{
    
    renderCells=()=>{
-       const {cells,onCellClick}=this.props;
+       const {cells,onCellClick,level}=this.props;
        const getCells=cells;
        return getCells.map((eachCell,index)=>{
-          return <Cell level={gameStore.level} cell={eachCell} key={index} selectedTheme='' onCellClick={onCellClick} id={gameStore.cells.id}/>
+          return <Cell level={level} cell={eachCell} key={index} selectedTheme='dark'
+                        onCellClick={onCellClick} id={eachCell.id}/>
        })
    }
     render(){
+        const {level}=this.props
         return(
-            <GameFieldComponent>
+            <GameFieldComponent width={data[level]}>
                     {this.renderCells()}
             </GameFieldComponent>
             )

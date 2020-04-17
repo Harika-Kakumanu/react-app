@@ -27,13 +27,17 @@ class Cell extends React.Component{
     }
     
     onCellClick=()=>{
-        const {id,onCellClick}=this.props;
-        this.isClickedOnCell=true;
-        console.log('in cell component',this.isClickedOnCell)
+        const {cell,id,onCellClick}=this.props;
+         const {isHidden}=this.props.cell;
+        //  console.log(cell);
+        // if(cell.isHidden){
+        //     this.isClickedOnCell=true;           
+        // }
+        
         onCellClick(id);
     }
     render(){
-        const {cell,onCellClick,selectedTheme}=this.props
+        const {cell,selectedTheme}=this.props
         const {isHidden}=this.props.cell;
         return(
             <CellComponent background={this.shouldShowHiddenCells&&isHidden?'green':'gray'} 
