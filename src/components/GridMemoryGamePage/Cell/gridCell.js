@@ -2,6 +2,7 @@ import React from 'react';
 import {observable,action} from 'mobx';
 import {observer} from 'mobx-react';
  import gameStore from '../../../stores/GameStore/gameStore'
+ import {data} from '../../../stores/gridData';
 import {CellComponent} from './index.js'
 import './index.css'
 
@@ -27,21 +28,21 @@ class Cell extends React.Component{
     }
     
     onCellClick=()=>{
-        const {cell,id,onCellClick}=this.props;
-         const {isHidden}=this.props.cell;
-        //  console.log(cell);
-        // if(cell.isHidden){
-        //     this.isClickedOnCell=true;           
-        // }
-        
+        const {cell:{id},onCellClick}=this.props;
+        const {isHidden}=this.props.cell
+        if(isHidden){
+            
+        }
         onCellClick(id);
+        
     }
     render(){
-        const {cell,selectedTheme}=this.props
+        const {cell,selectedTheme,level}=this.props
         const {isHidden}=this.props.cell;
+        let width=(data[level].gridWidth/(level+3))-1;
         return(
-            <CellComponent background={this.shouldShowHiddenCells&&isHidden?'green':'gray'} 
-                           onClick={this.onCellClick}></CellComponent>
+            <CellComponent cellWidth={width} background={this.shouldShowHiddenCells&&isHidden?'green':'gray'} 
+                           onClick={this.onCellClick}>{cell.id}</CellComponent>
             )
     }
 }

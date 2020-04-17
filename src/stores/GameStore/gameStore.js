@@ -9,7 +9,7 @@ class GameStore{
     @observable currentLevelGridCells;
     @observable selectedCellsCount;
     @observable isGameCompleted;
-    cells=[]
+    @observable cells=[]
     
     constructor(props){
         this.level=0;
@@ -22,7 +22,7 @@ class GameStore{
         this.cells=[];
         for(let i=0;i<Math.pow(this.level+3,2);i++){
             const cellObject={
-                id:Math.random().toString(),
+                id:i,
                 isHidden:false,
                 isClicked:false
             };
@@ -45,22 +45,25 @@ class GameStore{
     
     onCellClick=(cellId)=>{
        let clickedCellIndex=this.currentLevelGridCells.findIndex(cell=>cell.id===cellId);
-       
-        let clickedCell=this.currentLevelGridCells[clickedCellIndex];
-        //let clickedCellIndex=this.cells.findIndex(cell=>cell.id===cellId);
-        //let clickedCell=this.cells[clickedCellIndex];
-        console.log(clickedCell);
-        if(clickedCell.isHidden){
-            if(clickedCell.isClicked===false){
-                clickedCell.isClicked=true;
-                this.incrementSelectedCellsCount();
+       if(clickedCellIndex!==-1)
+       {
+          let clickedCell=this.currentLevelGridCells[clickedCellIndex]; 
+           if(clickedCell.isHidden)
+           {
+                if(clickedCell.isClicked===false)
+                {
+                    clickedCell.isClicked=true;
+                    this.incrementSelectedCellsCount();
+                }
+                if(this.level>7){
+                    this.onPlayAgainClick();
+                }
+            }
+           else{
+            this.goToInitialLevelAndUpdateCells();
             }
         }
-        else{
-            this.goToInitialLevelAndUpdateCells();
-        }
     }
-   
     
     goToNextLevelAndUpdateCells=()=>{
         this.level++;
@@ -75,7 +78,7 @@ class GameStore{
     }
     
     resetSelectedCellsCount=()=>{
-        this.selectedCellsCount=0
+        this.selectedCellsCount=0;
     }
     
     incrementSelectedCellsCount=()=>{
@@ -84,9 +87,11 @@ class GameStore{
             this.resetSelectedCellsCount();
             this.goToNextLevelAndUpdateCells();
         }
+        //else if(this.selectedCellsCount===0)
     }
     
     onPlayAgainClick=()=>{
+        alert('all levels completed')
         this.goToInitialLevelAndUpdateCells();
     }
     
@@ -127,5 +132,6 @@ export default gameStore;
         // });
      
      
-    //  console.aws.amazon.com/cloud9/ide/fa4adb425f5d4219868801888d5662a0
+    //  https://ap-southeast-1.console.aws.amazon.com/cloud9/ide/fa4adb425f5d4219868801888d5662a0
+    
     //https://tap.ibhubs.in/react/assignments/assignment-9/

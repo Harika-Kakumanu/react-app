@@ -9,45 +9,45 @@ export const data=[
     {
         gridSize: 4 ,
         hiddenCellCount: 4,
-        gridWidth: 300
+        gridWidth: 325
     },
 
     {
         gridSize: 5,
         hiddenCellCount: 5,
-        gridWidth: 400
+        gridWidth: 350
     },
 
     {
         gridSize: 6,
         hiddenCellCount: 6,
-        gridWidth: 400
+        gridWidth: 375
 
     },
 
     {
         gridSize: 7,
         hiddenCellCount: 7,
-        gridWidth: 500
+        gridWidth: 400
     },
 
 
     {
         gridSize: 8 ,
         hiddenCellCount: 8,
-        gridWidth: 500
+        gridWidth: 425
     },
 
     {
         gridSize: 9 ,
         hiddenCellCount: 9,
-        gridWidth: 600
+        gridWidth: 450
     },
 
     {
         gridSize: 10,
         hiddenCellCount: 10,
-        gridWidth: 600
+        gridWidth: 475
     },
 
 

@@ -9,12 +9,12 @@ import {GameFieldComponent} from './index.js'
 
 @observer
 class GameField extends React.Component{
-   
+    count=0;
    renderCells=()=>{
        const {cells,onCellClick,level}=this.props;
        const getCells=cells;
        return getCells.map((eachCell,index)=>{
-          return <Cell level={level} cell={eachCell} key={index} selectedTheme='dark'
+          return <Cell level={level} cell={eachCell} key={Math.random()} selectedTheme='dark'
                         onCellClick={onCellClick} id={eachCell.id}/>
        })
    }

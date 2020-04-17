@@ -15,9 +15,8 @@ const HeaderComponent=styled.div`
     ${tw `mt-4`}`    
     
 const LevelComponent=styled.p`
-    ${tw `text-xl`}`
+    ${tw `text-xl`}`;
 
-    
 const Button=styled.button` ${tw `text-xl p-2 rounded`}
     background-color:${(props)=>props.theme==='light'?'#ebf8ff':'#1a202c'};
     color:${(props)=>props.theme==='light'?'black':'white'};
