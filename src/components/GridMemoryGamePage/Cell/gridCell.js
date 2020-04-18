@@ -27,6 +27,7 @@ class Cell extends React.Component{
         },(level+3)*1000);
     }
     
+    
     onCellClick=()=>{
         const {cell:{id},onCellClick}=this.props;
         const {isHidden}=this.props.cell

@@ -15,11 +15,13 @@ class GameStore{
         this.level=0;
         this.topLevel=0;
         this.selectedCellsCount=0;
+        this.isGameCompleted=false;
         this.setGridCells();
     }
  
     setGridCells=()=>{
         this.cells=[];
+        this.isGameCompleted=false;
         for(let i=0;i<Math.pow(this.level+3,2);i++){
             const cellObject={
                 id:i,
@@ -55,8 +57,10 @@ class GameStore{
                     clickedCell.isClicked=true;
                     this.incrementSelectedCellsCount();
                 }
-                if(this.level>7){
-                    this.onPlayAgainClick();
+                if(data.length-1===this.level){
+                    //console.log(data.length)
+                    this.isGameCompleted=true;
+                    //this.onPlayAgainClick();
                 }
             }
            else{
@@ -68,13 +72,15 @@ class GameStore{
     goToNextLevelAndUpdateCells=()=>{
         this.level++;
         this.setGridCells();
+        this.resetSelectedCellsCount();
     }
     
     goToInitialLevelAndUpdateCells=()=>{
+        alert('1');
         this.setTopLevel();
         this.level=0;
-        this.resetSelectedCellsCount();
         this.setGridCells();
+        this.resetSelectedCellsCount();
     }
     
     resetSelectedCellsCount=()=>{
@@ -87,21 +93,20 @@ class GameStore{
             this.resetSelectedCellsCount();
             this.goToNextLevelAndUpdateCells();
         }
-        //else if(this.selectedCellsCount===0)
     }
     
     onPlayAgainClick=()=>{
-        alert('all levels completed')
         this.goToInitialLevelAndUpdateCells();
     }
     
     resetGame=()=>{
+        this.level=0;
         this.goToInitialLevelAndUpdateCells();
     }
     
     setTopLevel=()=>{
-        if(this.level>this.topScore){
-            this.topScore=this.level;
+        if(this.level>this.topLevel){
+            this.topLevel=this.level;
         }
     }
 }

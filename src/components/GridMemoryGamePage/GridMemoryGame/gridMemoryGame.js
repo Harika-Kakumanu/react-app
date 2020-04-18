@@ -18,8 +18,10 @@ class GridMemoryGame extends React.Component{
             <GridMemoryGameComponent theme={gridThemeStore.selectedTheme}>
                 <Header topLevel={gameStore.topLevel} selectedTheme={gridThemeStore.selectedTheme} 
                 onChangeSelectedTheme={gridThemeStore.onChangeSelectedTheme} level={gameStore.level} /> 
+                {gameStore.isGameCompleted===false?
                 <GameField  cells={gameStore.cells} onCellClick={gameStore.onCellClick} level={gameStore.level}/>
-                <GameResult level={gameStore.level} selectedTheme={gridThemeStore.selectedTheme} onPlayAgainClick={gameStore.onPlayAgainClick}/>
+                :<GameResult level={gameStore.level} selectedTheme={gridThemeStore.selectedTheme} 
+                onPlayAgainClick={gameStore.onPlayAgainClick}/>}
             </GridMemoryGameComponent>
             
             )
