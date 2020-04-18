@@ -11,6 +11,7 @@ class Cell extends React.Component{
     
     @observable shouldShowHiddenCells;
     @observable isClickedOnCell;
+    @ observable disabled
     timer='';
     
     constructor(props){
@@ -23,17 +24,14 @@ class Cell extends React.Component{
     componentDidMount(){
         const {level}=this.props;
         this.timer=setTimeout(()=>{
-            this.shouldShowHiddenCells=false;
+            this.shouldShowHiddenCells=false
         },(level+3)*1000);
     }
     
-    
     onCellClick=()=>{
         const {cell:{id},onCellClick}=this.props;
+        console.log(this.disabled)
         const {isHidden}=this.props.cell
-        if(isHidden){
-            
-        }
         onCellClick(id);
         
     }
@@ -41,9 +39,12 @@ class Cell extends React.Component{
         const {cell,selectedTheme,level}=this.props
         const {isHidden}=this.props.cell;
         let width=(data[level].gridWidth/(level+3))-4;
+         console.log(this.disabled)
         return(
-            <CellComponent cellWidth={width} background={this.shouldShowHiddenCells&&isHidden?'green':'gray'} 
-                           onClick={this.onCellClick}>{cell.id}</CellComponent>
+            <CellComponent cellWidth={width} 
+            disabled={ this.shouldShowHiddenCells}
+            background={this.shouldShowHiddenCells&&isHidden?'green':'gray'} 
+                           onClick={this.onCellClick}></CellComponent>
             )
     }
 }

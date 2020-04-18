@@ -1,7 +1,9 @@
 import React from 'react'
-import {observable,action} from 'mobx';
-import GridModel from '../models/GridModel/gridModel';
+import {observable} from 'mobx';
+
 import {data} from '../../stores/gridData';
+
+import GridModel from '../models/GridModel/gridModel';
 
 class GameStore{
     @observable level;
@@ -9,7 +11,7 @@ class GameStore{
     @observable currentLevelGridCells;
     @observable selectedCellsCount;
     @observable isGameCompleted;
-    @observable cells=[]
+    @observable cells;
     
     constructor(props){
         this.level=0;
@@ -17,6 +19,7 @@ class GameStore{
         this.selectedCellsCount=0;
         this.isGameCompleted=false;
         this.setGridCells();
+        this.cells=[];
     }
  
     setGridCells=()=>{
@@ -42,7 +45,7 @@ class GameStore{
         this.currentLevelGridCells=tempCells.slice(0,this.level+3);
         this.currentLevelGridCells.forEach(each=>{
             each.isHidden=true;
-        })
+        });
     }
     
     onCellClick=(cellId)=>{
@@ -58,9 +61,7 @@ class GameStore{
                     this.incrementSelectedCellsCount();
                 }
                 if(data.length===this.level){
-                    //console.log(data.length)
                     this.isGameCompleted=true;
-                    //this.onPlayAgainClick();
                 }
             }
            else{
@@ -70,13 +71,14 @@ class GameStore{
     }
     
     goToNextLevelAndUpdateCells=()=>{
+        if(this.level<1){
         this.level++;
+        }
         this.setGridCells();
         this.resetSelectedCellsCount();
     }
     
     goToInitialLevelAndUpdateCells=()=>{
-        alert('1');
         this.setTopLevel();
         this.level=0;
         this.setGridCells();
@@ -135,6 +137,28 @@ export default gameStore;
         //         //this.goToInitialLevelAndUpdateCells();
         //     }
         // });
+        
+        
+        
+        
+        
+//         - [ ] Timers wont be written in and need to write in the components
+// - [ ] use timers in componentdidmount and clear in the unmount.
+// - [ ] commented code in the files
+// - [ ] imported statements in the order
+// - [ ] need not intialize the values while writing the @observable
+//         - [ ] for eg:@observable count=0;(wrong)
+//         - [ ]          must be in the intialize constructor only
+// - [ ] use styled components 
+// - [ ] when using reactions must be disposed it
+// - [ ] top level updating when the user time out
+// - [ ] if(shouldEnable===true)(wrong way)
+// - [ ] must be import themestore at the parent component
+// - [ ] cell component does not need "sholudShowHiddenCells"
+// - [ ] if game json is not used ,then must be used computed functions
+
+        
+        
      
      
     //  https://ap-southeast-1.console.aws.amazon.com/cloud9/ide/fa4adb425f5d4219868801888d5662a0

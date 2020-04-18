@@ -49,8 +49,6 @@ export const data=[
         hiddenCellCount: 10,
         gridWidth: 475
     },
-
-
-]
+];
 
     
