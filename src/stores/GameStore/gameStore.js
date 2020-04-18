@@ -57,7 +57,7 @@ class GameStore{
                     clickedCell.isClicked=true;
                     this.incrementSelectedCellsCount();
                 }
-                if(data.length-1===this.level){
+                if(data.length===this.level){
                     //console.log(data.length)
                     this.isGameCompleted=true;
                     //this.onPlayAgainClick();

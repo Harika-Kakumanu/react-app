@@ -40,7 +40,7 @@ class Cell extends React.Component{
     render(){
         const {cell,selectedTheme,level}=this.props
         const {isHidden}=this.props.cell;
-        let width=(data[level].gridWidth/(level+3))-1;
+        let width=(data[level].gridWidth/(level+3))-4;
         return(
             <CellComponent cellWidth={width} background={this.shouldShowHiddenCells&&isHidden?'green':'gray'} 
                            onClick={this.onCellClick}>{cell.id}</CellComponent>
