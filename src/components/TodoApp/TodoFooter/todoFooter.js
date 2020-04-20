@@ -1,7 +1,5 @@
-
 import React from 'react'
 import {action} from 'mobx';
-
 
 import todoStore from '../../../stores/TodoStore/todoStore'
 

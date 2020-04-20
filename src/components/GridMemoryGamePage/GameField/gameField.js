@@ -1,7 +1,8 @@
 import React from 'react';
 import {observer} from 'mobx-react';
+
+import gridThemeStore from '../../../stores/ThemeStore/GridThemeStore/gridThemeStore';
 import {data} from '../../../stores/gridData';
-import gameStore from '../../../stores/GameStore/gameStore'
 
 import Cell from '../Cell/gridCell';
 
@@ -9,12 +10,13 @@ import {GameFieldComponent} from './index.js'
 
 @observer
 class GameField extends React.Component{
-    count=0;
    renderCells=()=>{
        const {cells,onCellClick,level}=this.props;
        const getCells=cells;
+       const {selectedTheme}=gridThemeStore;
+       
        return getCells.map((eachCell)=>{
-          return <Cell level={level} cell={eachCell} key={Math.random()} selectedTheme='dark'
+          return <Cell level={level} cell={eachCell} key={Math.random()} selectedTheme={selectedTheme}
                         onCellClick={onCellClick} id={eachCell.id}/>
        })
    }

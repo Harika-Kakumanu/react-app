@@ -1,9 +1,10 @@
 import React from 'react';
-import {Provider,observer} from 'mobx-react';
-import gameStore from '../../../stores/GameStore/gameStore';
-import gridThemeStore from '../../../stores/ThemeStore/GridThemeStore/gridThemeStore';
-import GameResult from '../GameResult/gameResult'
+import {observer} from 'mobx-react';
 
+import gridThemeStore from '../../../stores/ThemeStore/GridThemeStore/gridThemeStore';
+import gameStore from '../../../stores/GameStore/gameStore';
+
+import GameResult from '../GameResult/gameResult';
 import Header from '../Header/header';
 import GameField from '../GameField/gameField';
 
@@ -12,16 +13,17 @@ import {GridMemoryGameComponent} from './index.js';
 @observer
 class GridMemoryGame extends React.Component{
     
-    
     render(){
+        const {level,topLevel,isGameCompleted,cells,onCellClick,onPlayAgainClick}=gameStore;
+        const {selectedTheme,onChangeSelectedTheme}=gridThemeStore;
         return(
-            <GridMemoryGameComponent theme={gridThemeStore.selectedTheme}>
-                <Header topLevel={gameStore.topLevel} selectedTheme={gridThemeStore.selectedTheme} 
-                onChangeSelectedTheme={gridThemeStore.onChangeSelectedTheme} level={gameStore.level} /> 
-                {gameStore.isGameCompleted===false?
-                <GameField  cells={gameStore.cells} onCellClick={gameStore.onCellClick} level={gameStore.level}/>
-                :<GameResult level={gameStore.level} selectedTheme={gridThemeStore.selectedTheme} 
-                onPlayAgainClick={gameStore.onPlayAgainClick}/>}
+            <GridMemoryGameComponent theme={selectedTheme}>
+                <Header topLevel={topLevel} selectedTheme={selectedTheme} 
+                onChangeSelectedTheme={onChangeSelectedTheme} level={level} /> 
+                {isGameCompleted===false?
+                <GameField  cells={cells} onCellClick={onCellClick} level={level}/>
+                :<GameResult level={level} selectedTheme={selectedTheme} 
+                onPlayAgainClick={onPlayAgainClick}/>}
             </GridMemoryGameComponent>
             
             )

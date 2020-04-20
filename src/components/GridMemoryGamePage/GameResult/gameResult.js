@@ -3,7 +3,7 @@ import {GameResultComponent,GreetingsComponent,GameResultLevel,Button} from './i
 
 class GameResult extends React.Component{
     render(){
-        const {level,selectedTheme,onPlayAgainClick}=this.props;
+        const {level,onPlayAgainClick}=this.props;
         return(
             <GameResultComponent>
                 <GameResultLevel>{level}</GameResultLevel>

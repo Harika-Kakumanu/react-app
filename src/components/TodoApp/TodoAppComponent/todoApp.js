@@ -16,6 +16,20 @@ import {TodoFooter} from '../TodoFooter/todoFooter'
 
 @observer
 class TodoApp extends React.Component{
+ 
+   componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/todos')
+    .then((response)=>response.json())
+    .then(this.getTodos)
+   }
+   
+   getTodos=(allTodos)=>{
+       const fetchedTodos=allTodos;
+       todoStore.todos=fetchedTodos.map(each=>{
+         console.log(each);
+     })
+   }
+ 
     @action.bound
     onAddTodo(event){
          if(event.key==='Enter' && event.target.value !==''){
@@ -26,7 +40,6 @@ class TodoApp extends React.Component{
     
      @action.bound
      onRemoveTodo(id){
-         console.log(id);
          todoStore.onRemoveTodo(id);
      }
      
@@ -41,6 +54,8 @@ class TodoApp extends React.Component{
       }
     
      renderTodoList =()=>{
+      //if(todoStore.FilteredTodos.len)
+      console.log(todoStore.FilteredTodos)
          return todoStore.FilteredTodos.map(eachTodo =>
              <Todo key={eachTodo.id} id={eachTodo.id} todo={eachTodo} isCompleted={eachTodo.isCompleted} onRemoveTodo={this.onRemoveTodo}></Todo>
          )
@@ -52,8 +67,10 @@ class TodoApp extends React.Component{
       }
     
     render(){
+
         return(
         <div>
+              
             <h1>Todos</h1>
              <input type='text' onKeyPress={this.onAddTodo} placeholder="What need to write"/>
            

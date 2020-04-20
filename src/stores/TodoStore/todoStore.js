@@ -1,6 +1,6 @@
-import { observable, action,computed } from 'mobx'
+import { observable, action,computed } from 'mobx';
 
-import TodoModel from '../models/todoModel'
+import TodoModel from '../models/todoModel';
 
 // type todoObj = {
 //     id:string,

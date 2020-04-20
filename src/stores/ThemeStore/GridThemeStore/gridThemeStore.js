@@ -3,13 +3,16 @@ import {observable} from 'mobx';
 
 
 class GridThemeStore{
-    @observable selectedTheme='dark';
+    @observable selectedTheme
+    constructor(){
+        this.selectedTheme='Dark';
+    }
     onChangeSelectedTheme=()=>{
-        if(this.selectedTheme==='dark'){
-            this.selectedTheme='light'
+        if(this.selectedTheme==='Dark'){
+            this.selectedTheme='Light';
         }
         else{
-            this.selectedTheme='dark';
+            this.selectedTheme='Dark';
         }
     }
     

@@ -3,11 +3,7 @@ import {Header} from './Header.js';
 import {CountriesFilterBar} from './Countriesfilterbar.js';
 import {Countries} from './countries.js';
 
-import styled from '@emotion/styled';
-import tw from 'tailwind.macro';
-
 import './countrystyle.css'
-
 
 
 class CountriesDashboardApp extends React.Component{

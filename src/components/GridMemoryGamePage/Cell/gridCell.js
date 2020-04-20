@@ -1,8 +1,8 @@
 import React from 'react';
 import {observable,action} from 'mobx';
 import {observer} from 'mobx-react';
- import gameStore from '../../../stores/GameStore/gameStore'
- import {data} from '../../../stores/gridData';
+import gameStore from '../../../stores/GameStore/gameStore';
+import {data} from '../../../stores/gridData';
 import {CellComponent} from './index.js'
 import './index.css'
 
@@ -11,10 +11,10 @@ class Cell extends React.Component{
     
     @observable shouldShowHiddenCells;
     @observable isClickedOnCell;
-    intialCellApperance
-    againCallingCells
+    timer
+    timer2
     gridColor='';
-    wrongClickTimer
+    timer3
     
     constructor(props){
         super(props);
@@ -22,49 +22,59 @@ class Cell extends React.Component{
         this.isClickedOnCell=false;
     }
     
+    
     componentDidMount=()=>{
         const {level}=this.props;
-        this.intialCellApperance=setTimeout(()=>{
-            this.shouldShowHiddenCells=false;
-            this.againCallingCells=setTimeout(()=>{
+        this.timer=setTimeout(()=>{
+            this.shouldShowHiddenCells=false
+            this.timer2=setTimeout(()=>{
                   gameStore.goToInitialLevelAndUpdateCells();
                 this.shouldShowHiddenCells=true;
+              
             },(level+3)*2000);
         },(level+3)*1000);
     }
     
     componentWillUnmount=()=>{
-        clearTimeout(this.intialCellApperance);
-        clearTimeout(this.againCallingCells);
-        clearTimeout(this.wrongClickTimer)
+        clearTimeout(this.timer);
+        clearTimeout(this.timer2);
+        clearTimeout(this.timer3)
     }
     
+    @action
     onCellClick=()=>{
         const {cell:{id},onCellClick}=this.props;
+        const {isHidden}=this.props.cell
+          
         this.isClickedOnCell=true;
-        this.wrongClickTimer=setTimeout(()=>{
+        console.log('n cell click',this.isClickedOnCell)
+        this.timer3=setTimeout(()=>{
             onCellClick(id);
-        },100);
+        },100)
+        
     }
    
-   
+   @action 
     eachCellColor=()=>{
         const {selectedTheme}=this.props;
-         const {isHidden}=this.props.cell;
+         const {isHidden}=this.props.cell
+      
         if(isHidden && (this.isClickedOnCell||this.shouldShowHiddenCells)){
-            this.gridColor=selectedTheme==='light'?'green':'#4fb1c5';
+             console.log('click sell',this.isClickedOnCell)
+            this.gridColor=selectedTheme==='light'?'green':'#4fb1c5'
         }
         else if(!isHidden&&this.isClickedOnCell){
             this.gridColor='red';
         }
         else{
-            this.gridColor=selectedTheme==='light'?'#294264':'#2c5282';
+            this.gridColor=selectedTheme==='light'?'gray':'#4a5568';
         }
     }
     
     render(){
         this.eachCellColor();
-        const {level}=this.props
+        const {cell,selectedTheme,level}=this.props
+        const {isHidden}=this.props.cell;
         let width=(data[level].gridWidth/(level+3))-4;
         return(
             <CellComponent gridColor={this.gridColor} cellWidth={width} 
