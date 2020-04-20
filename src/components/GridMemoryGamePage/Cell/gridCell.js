@@ -11,8 +11,10 @@ class Cell extends React.Component{
     
     @observable shouldShowHiddenCells;
     @observable isClickedOnCell;
-    @ observable disabled
-    timer='';
+    intialCellApperance
+    againCallingCells
+    gridColor='';
+    wrongClickTimer
     
     constructor(props){
         super(props);
@@ -20,31 +22,54 @@ class Cell extends React.Component{
         this.isClickedOnCell=false;
     }
     
-    @action.bound
-    componentDidMount(){
+    componentDidMount=()=>{
         const {level}=this.props;
-        this.timer=setTimeout(()=>{
-            this.shouldShowHiddenCells=false
+        this.intialCellApperance=setTimeout(()=>{
+            this.shouldShowHiddenCells=false;
+            this.againCallingCells=setTimeout(()=>{
+                  gameStore.goToInitialLevelAndUpdateCells();
+                this.shouldShowHiddenCells=true;
+            },(level+3)*2000);
         },(level+3)*1000);
+    }
+    
+    componentWillUnmount=()=>{
+        clearTimeout(this.intialCellApperance);
+        clearTimeout(this.againCallingCells);
+        clearTimeout(this.wrongClickTimer)
     }
     
     onCellClick=()=>{
         const {cell:{id},onCellClick}=this.props;
-        console.log(this.disabled)
-        const {isHidden}=this.props.cell
-        onCellClick(id);
-        
+        this.isClickedOnCell=true;
+        this.wrongClickTimer=setTimeout(()=>{
+            onCellClick(id);
+        },100);
     }
+   
+   
+    eachCellColor=()=>{
+        const {selectedTheme}=this.props;
+         const {isHidden}=this.props.cell;
+        if(isHidden && (this.isClickedOnCell||this.shouldShowHiddenCells)){
+            this.gridColor=selectedTheme==='light'?'green':'#4fb1c5';
+        }
+        else if(!isHidden&&this.isClickedOnCell){
+            this.gridColor='red';
+        }
+        else{
+            this.gridColor=selectedTheme==='light'?'#294264':'#2c5282';
+        }
+    }
+    
     render(){
-        const {cell,selectedTheme,level}=this.props
-        const {isHidden}=this.props.cell;
+        this.eachCellColor();
+        const {level}=this.props
         let width=(data[level].gridWidth/(level+3))-4;
-         console.log(this.disabled)
         return(
-            <CellComponent cellWidth={width} 
+            <CellComponent gridColor={this.gridColor} cellWidth={width} 
             disabled={ this.shouldShowHiddenCells}
-            background={this.shouldShowHiddenCells&&isHidden?'green':'gray'} 
-                           onClick={this.onCellClick}></CellComponent>
+                onClick={this.onCellClick}></CellComponent>
             )
     }
 }

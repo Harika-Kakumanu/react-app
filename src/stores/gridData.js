@@ -1,5 +1,4 @@
 export const data=[
-    
     {
         gridSize: 3, // this means 3x3 grid
         hiddenCellCount: 3, // no. of hidden cells in this grid
@@ -39,7 +38,7 @@ export const data=[
     },
 
     {
-        gridSize: 9 ,
+        gridSize: 9,
         hiddenCellCount: 9,
         gridWidth: 450
     },
@@ -49,6 +48,6 @@ export const data=[
         hiddenCellCount: 10,
         gridWidth: 475
     },
-];
+]
 
     

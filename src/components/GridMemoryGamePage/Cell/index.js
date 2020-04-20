@@ -6,9 +6,9 @@ import tw from 'tailwind.macro';
 
 const CellComponent = styled.button`${tw `rounded`}
     margin:2px;
+    background:${(props)=>props.gridColor};
     height:${(props)=>props.cellWidth}px;
-    width:${(props)=>props.cellWidth}px;
-    background:${(props)=>props.background};`
+    width:${(props)=>props.cellWidth}px;`
 
     
 export {CellComponent};
