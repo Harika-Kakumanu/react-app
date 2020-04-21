@@ -11,10 +11,10 @@ class Cell extends React.Component{
     
     @observable shouldShowHiddenCells;
     @observable isClickedOnCell;
-    timer
-    timer2
+    intialApperanceCells
+    againCallingCells
     gridColor='';
-    timer3
+    wrongClick
     
     constructor(props){
         super(props);
@@ -25,9 +25,9 @@ class Cell extends React.Component{
     
     componentDidMount=()=>{
         const {level}=this.props;
-        this.timer=setTimeout(()=>{
+        this.intialApperanceCells=setTimeout(()=>{
             this.shouldShowHiddenCells=false
-            this.timer2=setTimeout(()=>{
+            this.againCallingCells=setTimeout(()=>{
                   gameStore.goToInitialLevelAndUpdateCells();
                 this.shouldShowHiddenCells=true;
               
@@ -36,19 +36,17 @@ class Cell extends React.Component{
     }
     
     componentWillUnmount=()=>{
-        clearTimeout(this.timer);
-        clearTimeout(this.timer2);
-        clearTimeout(this.timer3)
+        clearTimeout(this.intialApperanceCells);
+        clearTimeout(this.againCallingCells);
+        clearTimeout(this.wrongClick)
     }
     
     @action
     onCellClick=()=>{
         const {cell:{id},onCellClick}=this.props;
         const {isHidden}=this.props.cell
-          
         this.isClickedOnCell=true;
-        console.log('n cell click',this.isClickedOnCell)
-        this.timer3=setTimeout(()=>{
+        this.wrongClick=setTimeout(()=>{
             onCellClick(id);
         },100)
         
@@ -60,14 +58,13 @@ class Cell extends React.Component{
          const {isHidden}=this.props.cell
       
         if(isHidden && (this.isClickedOnCell||this.shouldShowHiddenCells)){
-             console.log('click sell',this.isClickedOnCell)
-            this.gridColor=selectedTheme==='light'?'green':'#4fb1c5'
+            this.gridColor=selectedTheme==='Light'?'green':'#4fb1c5'
         }
         else if(!isHidden&&this.isClickedOnCell){
             this.gridColor='red';
         }
         else{
-            this.gridColor=selectedTheme==='light'?'gray':'#4a5568';
+            this.gridColor=selectedTheme==='Light'?'gray':'#4a5568';
         }
     }
     

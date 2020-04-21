@@ -1,6 +1,5 @@
 import React from "react";
 
-//import {observer} from 'mobx-react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import HomePage from "./components/HomePage";
@@ -12,15 +11,11 @@ import {CounterApp} from './components/CounterApp/counterApp';
 import {TodoApp} from './components/TodoApp/TodoAppComponent/todoApp'
 import GridMemoryGame from './components/GridMemoryGamePage/GridMemoryGame/gridMemoryGame'
 import themeStore from './stores/ThemeStore'
+import UsersPage from './components/UsersPage'
 import "./App.css";
+import stores from './stores'
+import {Provider} from 'mobx-react';
 
-
-// import {configure} from 'mobx'
-
-
-
-// configure({enforceActions:true})
-//@observer
 class App extends React.Component{
   
   getCurrentTheme=()=>{
@@ -59,32 +54,26 @@ class App extends React.Component{
   
   onChangeTheme=()=>{
     let background = this.getCurrentTheme() === 'LIGHT' ? 'DARK' : 'LIGHT';
-    this.setCurrentTheme(background)
-    // if(this.getCurrentTheme() === 'Light'){
-    //   this.setCurrentTheme('Dark')
-    // }
-    // else
-    // {
-    // this.setCurrentTheme('Light') 
-    // }
+    this.setCurrentTheme(background);
   }
 
 render(){
-  //console.log(selectedTheme)
+
   return (
+    <Provider {...stores}>
     <Router basename={process.env.PUBLIC_URL}>
       <Switch>
+        
+        <Route exact path='/users' component ={UsersPage}/>
         
         <Route exact path="/page-1">
           <Page1/>
         </Route>
         
-        
          <Route exact path="/grid-game">
           <GridMemoryGame/>
         </Route>
         
-     
          <Route exact path="/mobx-todo-app">
           <TodoApp/>
         </Route>
@@ -111,6 +100,7 @@ render(){
         
       </Switch>
     </Router>
+    </Provider>
   );
 };
 }
