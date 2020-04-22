@@ -6,7 +6,7 @@ class UserService {
     api
     constructor(){
        this.api=create({
-           baseURL:'https://jsonplaceholder.typicode.com/'
+           baseURL:'https://jsonplaceholder.typicode.com'
        }) ;
     }
     

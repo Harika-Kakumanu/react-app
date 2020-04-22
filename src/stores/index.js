@@ -1,7 +1,15 @@
-import UserService from '../services/UserService/index.api'
-import UserStore from './UsersStore'
+import UserService from '../services/UserService/index.api';
+import UserStore from './UsersStore';
 
-const userService=new UserService()
-const userStore=new UserStore(userService)
+import TodoNetworkStore from './TodoNetworkStore';
+import TodoService from '../services/TodoService/index.api';
 
-export default {userStore};
+
+const userService=new UserService();
+const userStore=new UserStore(userService);
+
+const todoService=new TodoService();
+const todoNetworkStore=new TodoNetworkStore(todoService);
+
+
+export default {userStore,todoNetworkStore} ;

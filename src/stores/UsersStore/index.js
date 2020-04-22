@@ -1,11 +1,11 @@
 import {observable,action} from 'mobx';
 import {API_INITIAL,API_FAILED,API_SUCCESS,API_FETCHING} from '@ib/api-constants' ;
-import {create} from 'apisauce'
-import {networkCallWithApisauce} from '../../utils/APIUtils' //Wrapper
-import {apiMethods} from '../../constants/APIConstants';
+//import {create} from 'apisauce'
+//import {networkCallWithApisauce} from '../../utils/APIUtils' //Wrapper
+//import {apiMethods} from '../../constants/APIConstants';
 import {bindPromiseWithOnSuccess} from '@ib/mobx-promise';
-import UserService from '../../services/UserService/index.fixture'
-//import UserFixtureService from '../../services/UserService'
+//import UserService from '../../services/UserService/index.fixture'
+
 
 class UserStore
 {
@@ -51,9 +51,9 @@ class UserStore
     @action.bound
     getUsersApi(){
         const usersPromise=this.userService.getUsersApi()
-        const api=create({
-            baseURL:'https://jsonplaceholder.typicode.com/'
-        })
+        // const api=create({
+        //     baseURL:'https://jsonplaceholder.typicode.com/'
+        // })
         // const usersPromise=networkCallWithApisauce(
         //     api,
         //     '/users/',

@@ -12,6 +12,7 @@ import {TodoApp} from './components/TodoApp/TodoAppComponent/todoApp'
 import GridMemoryGame from './components/GridMemoryGamePage/GridMemoryGame/gridMemoryGame'
 import themeStore from './stores/ThemeStore'
 import UsersPage from './components/UsersPage'
+import {TodoAppNetwork} from './components/TodoAppUsingNetworkCalls/TodoApp/'
 import "./App.css";
 import stores from './stores'
 import {Provider} from 'mobx-react';
@@ -65,6 +66,8 @@ render(){
       <Switch>
         
         <Route exact path='/users' component ={UsersPage}/>
+        
+        <Route exact path='/todoNetworks' component ={TodoAppNetwork}/>
         
         <Route exact path="/page-1">
           <Page1/>
