@@ -14,7 +14,6 @@ class TodoNetworkStore{
    constructor(todoService){
        this.todoService=todoService;
        this.init();
-       
    }
    
    @action.bound
@@ -32,8 +31,12 @@ class TodoNetworkStore{
    
    @action.bound
    setTodoApiResponse(todoResponse){
-       this.todos=todoResponse;
-       //this.todos=todoResponse.map((todo)=>todo.title);
+       todoResponse.map((todo)=>
+            {
+               // this.onAddTodo(todo.title,todo.completed)
+                
+            }
+       );
    }
    
    @action.bound
@@ -43,6 +46,7 @@ class TodoNetworkStore{
    
    @action.bound
    setTodoApiStatus(apiStatus){
+       console.log('status',apiStatus)
        this.getTodoApiStatus=apiStatus;
    }
    
@@ -55,11 +59,11 @@ class TodoNetworkStore{
    }
    
     @action.bound
-    onAddTodo(title){
+    onAddTodo(title,booleanValue){
       const  newObject={
             id:Math.random().toString(), 
             title,
-            isCompleted:false,
+            isCompleted:booleanValue,
         }
        const todoModel=new TodoModel(newObject);
         this.todos.push(todoModel);

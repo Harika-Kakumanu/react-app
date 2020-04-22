@@ -1,7 +1,10 @@
+
 import React from 'react';
 import {action} from 'mobx';
 import {observer,inject} from 'mobx-react';
- 
+import LoadingWrapperWithFailure from '../../common/LoadingWrapperWithFailure'; 
+
+import NoDataView from '../../common/NoDataView';
 import {Todo} from '../Todo/';
 import {TodoFooter} from '../TodoFooter/'
 
@@ -13,7 +16,7 @@ class TodoAppNetwork extends React.Component{
       getTodosFromStore=()=>{
          return this.props.todoNetworkStore
       }
-   componentDidMount(){
+    componentDidMount(){
       this.doNetworkCalls();
    }
    
@@ -33,7 +36,7 @@ class TodoAppNetwork extends React.Component{
     @action.bound
     onAddTodo(event){
          if(event.key==='Enter' && event.target.value !==''){
-             this.getTodosFromStore().onAddTodo(event.target.value)
+             this.getTodosFromStore().onAddTodo(event.target.value,false)
               event.target.value=''
          }
     }
@@ -53,10 +56,23 @@ class TodoAppNetwork extends React.Component{
           
       }
       
-     //@action
+    //@action
      renderTodoList=()=>{
-        return this.getTodosFromStore().FilteredTodos.map(eachTodo =>
-             <Todo key={eachTodo.id} id={eachTodo.id} todo={eachTodo} isCompleted={eachTodo.isCompleted} onRemoveTodo={this.onRemoveTodo}></Todo>
+      const {todos}=this.getTodosFromStore();
+      if(todos.length===0)
+        return <NoDataView/>
+        else{
+          this.onAddTodo();
+        }
+      return(
+          <div>
+            <h1>Todos</h1>
+             <input type='text' onKeyPress={this.onAddTodo} placeholder="What need to write"/>
+            {this.getTodosFromStore().FilteredTodos.map(eachTodo =>
+             <Todo key={eachTodo.id} id={eachTodo.id} todo={eachTodo} isCompleted={eachTodo.isCompleted}
+             onRemoveTodo={this.onRemoveTodo}></Todo>)}
+             <TodoFooter onChangeSelectedFilter={this.onChangeSelectedFilter}/>
+           </div>
          )
      }
      
@@ -66,19 +82,22 @@ class TodoAppNetwork extends React.Component{
       }
     
     render(){
+     
+     const {getTodoApiError,getTodoApiStatus}=this.getTodosFromStore();
+        console.log("originalTodo---->",getTodoApiStatus,getTodoApiError)
         return(
-        <div>
-              
-            <h1>Todos</h1>
-             <input type='text' onKeyPress={this.onAddTodo} placeholder="What need to write"/>
-           
-            {this.renderTodoList()}
-          
-            <TodoFooter onChangeSelectedFilter={this.onChangeSelectedFilter}/>
-        </div>
-        
+         <div>
+           <LoadingWrapperWithFailure apiError={getTodoApiError} apiStatus={getTodoApiStatus}
+            onRetryClick={this.doNetworkCalls} renderSuccessUI={this.renderTodoList}/> 
+            
+         </div>
          )
     }
 }
 
 export {TodoAppNetwork}
+
+
+
+// 
+  //
