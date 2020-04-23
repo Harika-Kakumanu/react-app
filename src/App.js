@@ -16,6 +16,16 @@ import {TodoAppNetwork} from './components/TodoAppUsingNetworkCalls/TodoApp/'
 import "./App.css";
 import stores from './stores'
 import {Provider} from 'mobx-react';
+import {enableLogging} from "mobx-logger";
+
+
+// const config = {
+//     predicate:()=>true,
+//     action:true,
+//     reaction:true,
+//     computed:true,
+//   }
+//   enableLogging(config);
 
 class App extends React.Component{
   
@@ -26,6 +36,7 @@ class App extends React.Component{
   setCurrentTheme=(theme)=>{
     themeStore.setCurrentTheme(theme)
   }
+  
   
   themeOptions={
     LIGHT:{
