@@ -13,10 +13,15 @@ import GridMemoryGame from './components/GridMemoryGamePage/GridMemoryGame/gridM
 import themeStore from './stores/ThemeStore'
 import UsersPage from './components/UsersPage'
 import {TodoAppNetwork} from './components/TodoAppUsingNetworkCalls/TodoApp/'
+//import {LoginForm} from './components/LoginRedirect'
 import "./App.css";
-import stores from './stores'
+//import stores from './stores'
+import stores from './common/stores/'
 import {Provider} from 'mobx-react';
 import {enableLogging} from "mobx-logger";
+
+import SignInForm from './Authentication/components/SignInForm/'
+import routes from './Ecommerce/routes/ProductsPath/productsPath.js'
 
 
 // const config = {
@@ -76,6 +81,9 @@ render(){
     <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         
+        {routes}
+        <Route exact path='/sign-in-auth' component ={SignInForm}/> 
+        
         <Route exact path='/users' component ={UsersPage}/>
         
         <Route exact path='/todoNetworks' component ={TodoAppNetwork}/>
@@ -109,7 +117,8 @@ render(){
         </Route>
         
         <Route path='/'>
-        <HomePage/>
+                  
+         <HomePage/>
         </Route>
         
       </Switch>

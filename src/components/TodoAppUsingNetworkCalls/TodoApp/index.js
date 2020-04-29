@@ -36,7 +36,7 @@ class TodoAppNetwork extends React.Component{
     }
     
      onRemoveTodo=(id)=>{
-      console.log('remove',id);
+      
          this.getTodosFromStore().onRemoveTodo(id);
      }
      

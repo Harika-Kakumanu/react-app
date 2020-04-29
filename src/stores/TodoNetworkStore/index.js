@@ -14,7 +14,7 @@ class TodoNetworkStore{
    constructor(todoService){
        this.todoService=todoService;
        this.init();
-       this.gettodos
+       
    }
    
    @action.bound
@@ -26,6 +26,7 @@ class TodoNetworkStore{
    }
    
   @action
+  
   clearStore(){
       this.init();
   }
@@ -34,7 +35,7 @@ class TodoNetworkStore{
    setTodoApiResponse(todoResponse){
        todoResponse.map((todo)=>
        {
-          // this.onAddTodo(todo.title,todo.completed)
+           this.onAddTodo(todo.title,todo.completed)
        }
        );
    }
@@ -66,11 +67,9 @@ class TodoNetworkStore{
         }
        const todoModel=new TodoModel(newObject);
         this.todos.push(todoModel)
-        console.log("added",this.todos);
     }
     
    @computed get gettodos(){
-       console.log('get todos',this.todos)
         return this.todos;
     }
     
@@ -91,14 +90,12 @@ class TodoNetworkStore{
               this.todos=newDupList;
     }
    
-F
      @computed get ActiveTodosCount(){
           let count=this.todos.filter(each=> {return each.isCompleted=== false});
               return count.length;
       }
 
      @computed get FilteredTodos(){
-         console.log("store",this.todos,this.selectedFilter);
          if(this.selectedFilter === 'All'){
              return this.todos;
          }

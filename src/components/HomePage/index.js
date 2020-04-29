@@ -1,9 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import logo from "../../logo.svg";
-
+import {ACCESS_TOKEN} from '../../utils/StorageUtils.js';
 
 function App() {
+  if(ACCESS_TOKEN===undefined){
+      <Redirect to={{pathname:'/login-page'}}/>
+  }
+  else
+  {
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +25,8 @@ function App() {
         >
           Learn React
         </a>
+         <Link to='/sign-in-auth'>Auth SignIn</Link>
+        <Link to='/login-page'>LoginForm</Link>
         <Link to="/todoNetworks">TodoApp With NetworkCalls</Link>  
         <Link to="/grid-game">Grid Memory Game</Link>  
          <Link to="/users">UsersPage</Link>  
@@ -27,8 +35,10 @@ function App() {
         <Link to="/country-dashboard-app">Country</Link>
         <Link to='/emoji-game'>Emoji Game</Link>
         <Link to='/counter-app'>Counter App</Link>
+        
       </header>
     </div>
   );
+  }
 }
 export default App;
