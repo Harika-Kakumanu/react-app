@@ -97,7 +97,7 @@ class ProductStore{
         else{
             let updatedList=[];
         for(let i=0;i<this.products.length;i++)
-        {
+        { 
                 for(let k=0;k<this.products[i].availableSizes.length;k++){
                     for(let j=0;j<this.sizeFilter.length;j++){
                    if(this.sizeFilter[j]===this.products[i].availableSizes[k]){
