@@ -4,9 +4,10 @@ import {HelloMessage} from '.';
 
 describe('HelloMessage test',()=>{
     it('should render message',()=>{
-        const {getByText,debug}=render(<HelloMessage message='World'/>);
+        const {getByText}=render(<HelloMessage message='World'/>);
         getByText(/World/i);
         
-        debug();
+        // debug();
+        
     })
 })

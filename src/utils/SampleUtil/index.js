@@ -1,1 +1,1 @@
-export {add} from './SampleUtil.js';
+export {add,sample,greater} from './SampleUtil.js';

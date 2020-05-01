@@ -70,7 +70,14 @@ class SignInForm extends React.Component{
                     <UserName type='text' placeholder='UserName' onChange={this.onChangeUserName}/>
                     <Password type='password' placeholder='Password' onChange={this.onChangePassword}/>
                     <SignInButton onClick={this.onSignInClick}>Sign in</SignInButton>
-                    <span>{this.errorMessage}</span>
+                    
+                     {this.errorMessage !== "" && this.errorMessage !== undefined ? (
+            <span >
+              {this.errorMessage}
+            </span>
+          ) : null}
+                    
+                  
                 </SignInPage>
     }
     
@@ -83,3 +90,7 @@ class SignInForm extends React.Component{
     }
 }
 export { SignInForm }
+
+// className="text-red-700 mt-2 w-48 text-sm">
+
+//   <span>{this.errorMessage}</span>
