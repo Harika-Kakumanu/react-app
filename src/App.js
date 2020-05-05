@@ -16,11 +16,12 @@ import {TodoAppNetwork} from './components/TodoAppUsingNetworkCalls/TodoApp/'
 //import {LoginForm} from './components/LoginRedirect'
 import "./App.css";
 //import stores from './stores'
-import stores from './common/stores/'
+import stores from './common/stores/';
 import {Provider} from 'mobx-react';
-import {enableLogging} from "mobx-logger";
+//import {enableLogging} from "mobx-logger";
 
-import SignInForm from './Authentication/components/SignInForm/'
+//import SignInForm from './Authentication/components/SignInForm/'
+import AuthRoutes from './Authentication/routes/AuthRoute.js';
 import routes from './Ecommerce/routes/ProductsPath/productsPath.js'
 
 
@@ -75,14 +76,14 @@ class App extends React.Component{
   }
 
 render(){
-
   return (
     <Provider {...stores}>
     <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         
+        {AuthRoutes}
         {routes}
-        <Route exact path='/sign-in-auth' component ={SignInForm}/> 
+       
         
         <Route exact path='/users' component ={UsersPage}/>
         

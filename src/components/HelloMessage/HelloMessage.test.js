@@ -7,7 +7,5 @@ describe('HelloMessage test',()=>{
         const {getByText}=render(<HelloMessage message='World'/>);
         getByText(/World/i);
         
-        // debug();
-        
-    })
-})
+    });
+});

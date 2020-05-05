@@ -64,7 +64,6 @@ describe("AuthStore Tests", () => {
     await authStore.userSignIn(requestObject, onSuccess, onFailure);
     expect(authStore.getSignInStatus).toBe(200);
     expect(mockSetCookie).toBeCalled();
-   // expect(onSuccess).toBeCalled();
   });
 
   it("should test userSignInAPI failure state", async () => {
@@ -82,7 +81,6 @@ describe("AuthStore Tests", () => {
     authStore = new AuthStore(authAPI);
     await authStore.userSignIn(requestObject, onSuccess, onFailure);
     expect(authStore.getSignInStatus).toBe(400);
-  //  expect(onFailure).toBeCalled();
   });
 
   it("should test user sign-out", () => {
