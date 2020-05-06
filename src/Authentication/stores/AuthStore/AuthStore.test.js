@@ -25,7 +25,7 @@ describe("AuthStore Tests", () => {
   });
 
   it("should test initialising auth store", () => {
-    expect(authStore.getSignInStatus).toBe('API_INITIAL');
+    expect(authStore.getSignInStatus).toBe(API_INITIAL);
     expect(authStore.getSignInError).toBe(null);
   });
 
@@ -86,7 +86,7 @@ describe("AuthStore Tests", () => {
   it("should test user sign-out", () => {
     authStore.userSignOut();
     expect(mockRemoveCookie).toBeCalled();
-    expect(authStore.getSignInStatus).toBe('API_INITIAL');
+    expect(authStore.getSignInStatus).toBe(API_INITIAL);
     expect(authStore.getSignInError).toBe(null);
   });
 });

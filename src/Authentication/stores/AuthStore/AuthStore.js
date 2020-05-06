@@ -16,17 +16,16 @@ class AuthStore{
     }
     
     init(){
-       this.getSignInStatus='API_INITIAL';
+       this.getSignInStatus=API_INITIAL;
        this.getSignInError=null; 
     }
     
-     @action.bound
+    @action.bound
     setGetUserSignInAPIStatus(apiStatus){
-        //console.log('apistatus',typeof(apiStatus))
         this.getSignInStatus=apiStatus;
     }
     
-        @action.bound
+    @action.bound
     setGetUserSignInAPIError(error){
         this.getSignInError=error;
     }
@@ -34,7 +33,6 @@ class AuthStore{
     @action.bound
     setUserSignInAPIResponse(signInResponse){
          setAccessToken(signInResponse.length > 0 && signInResponse[0].access_token);
-        //setAccessToken(signInResponse);
     }
     
     @action.bound

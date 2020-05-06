@@ -1,50 +1,51 @@
 import React from 'react';
-//import {observable,action} from  'mobx';
 import {observer} from 'mobx-react';
-//import {v4 as uuidv4 } from 'uuid';
-//import { withRouter } from "react-router-dom";
-//import LoadingWrapperWithFailure from '../../../components/common/LoadingWrapperWithFailure'; 
-//import {getAccessToken} from '../../../utils/StorageUtils.js';
-//import NoDataView from '../../../components/common/NoDataView';
+import ReactLoading from 'react-loading';
+import {API_FETCHING} from '@ib/api-constants'
 import {DisplayErrorMessage,SignInPage,UserName,Password,SignInButton,Heading} from './styledComponents';
 
-
- @observer
+@observer
 class SignInForm extends React.Component{
-    
     render(){
         const {
+            apiStatus,
             username,
             password,
             onChangePassword,
             onChangeUserName,
             onSignInClick,
             errorMessage
-            
         }=this.props;
-       // console.log(typeof(onChangeUserName))
-               return <SignInPage>
+        
+       return (
+           <SignInPage>
                     <Heading>Sign in</Heading>
                      <UserName
                          type='text'
-                         placeholder='UserName'
                          value={username}
+                         placeholder='UserName'
                          onChange={onChangeUserName}/>
                     <Password 
                         type='password' 
                         placeholder='Password' 
                         onChange={onChangePassword} 
                         value={password}/>
-                     <SignInButton  onClick={onSignInClick}>Sign In</SignInButton>
-                   
+                     <SignInButton  onClick={onSignInClick}>
+                     {apiStatus === API_FETCHING?
+                            <ReactLoading type='spin' width='25px' height='25px'/>
+                    :'Sign In'
+                     }</SignInButton>
+                     
                      <DisplayErrorMessage >
                        {errorMessage}
                      </DisplayErrorMessage>
-
-                 </SignInPage>;
+                 </SignInPage>
+           );
     }}
 
  export { SignInForm };
+ 
+ 
  //{(this.errorMessage !== "") && (this.errorMessage !== undefined) ? () : null}
 //     @observable username
 //     @observable password
