@@ -1,7 +1,7 @@
 import AuthService from '../../Authentication/services/AuthServices/index.api';
 import AuthStore from  '../../Authentication/stores/AuthStore/';
 
-import ProductService from '../../Ecommerce/services/ProductService/productService.js';
+import ProductService from '../../Ecommerce/services/ProductService/';
 import ProductStore from '../../Ecommerce/stores/ProductStore/';
 
 import CartStore from '../../CartModule/stores/CartStore/';

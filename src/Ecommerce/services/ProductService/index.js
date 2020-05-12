@@ -1,0 +1,1 @@
+export { ProductService as default } from './productService'

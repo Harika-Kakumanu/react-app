@@ -9,7 +9,6 @@ class SizeFilter extends React.Component{
         const {onSelectSize}=this.props;
         onSelectSize(event.target.value);
     }
-    
     render(){
         return(
             <DisplaySizes>
@@ -25,3 +24,4 @@ class SizeFilter extends React.Component{
 }
 
 export {SizeFilter};
+

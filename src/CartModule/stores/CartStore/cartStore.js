@@ -13,7 +13,6 @@ class CartStore{
     onClickAddToCart=(productId)=>{
         const cartModel=new CartModel(productId);
         this.cartProductList.push(cartModel);
-      // console.log('cartStore',this.cartProductList);
 
     }
     

@@ -13,7 +13,6 @@ class CartItem extends React.Component{
         
         const {getProductDetailsById,onRemoveCartItem,cartItem}=this.props;
         const product = getProductDetailsById(cartItem.productId);
-        console.log(product);
         return(
             <OuterDiv>
             <ImageWithDetails>
@@ -24,12 +23,9 @@ class CartItem extends React.Component{
                 <Quantity>Quantity: {0}</Quantity>
                 </Details>
             </ImageWithDetails>
-            
             </OuterDiv>
             );
     }
 }
 
 export {CartItem};
-
-// <ImageDisplay src={product.imageURL}></ImageDisplay>

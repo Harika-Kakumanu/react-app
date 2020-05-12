@@ -7,13 +7,12 @@ import Header from '../Header/';
 import SizeFilter from '../SizeFilter/';
 import ProductCart from '../../../CartModule/components/ProductCart/';
 import LoadingWrapperWithFailure from '../../../components/common/LoadingWrapperWithFailure'; 
-import {MainProductPage,MainHeader,SignOutButton,DisplaySizesAndProducts,BothListAndCart,
-    DisplayProducts} from './styledComponents.js';
+import {MainProductPage,MainHeader,SignOutButton,DisplaySizesAndProducts,
+        DisplayProducts} from './styledComponents.js';
 
 @inject('authStore','productStore','history','cartStore')
 @observer
 class ProductsPage extends React.Component{
-    
     componentDidMount(){
         this.doNetworkCalls();
     }
@@ -38,7 +37,6 @@ class ProductsPage extends React.Component{
        console.log('signout'); 
     }
     
-    
     renderList=observer(()=>{
      return(
         <MainProductPage>
@@ -57,18 +55,17 @@ class ProductsPage extends React.Component{
 
           </DisplaySizesAndProducts>
         </MainProductPage>
-            )
+            );
 
     })
 
     render(){
-    
+        
         const {getProductListAPIError,getProductListAPIStatus} = this.getProductstore();
         return(
             <LoadingWrapperWithFailure key={uuidv4()} apiError={getProductListAPIError} apiStatus={getProductListAPIStatus}
             onRetryClick={this.doNetworkCalls} renderSuccessUI={this.renderList}/> 
             );
-            
     }
 }
 export {ProductsPage};

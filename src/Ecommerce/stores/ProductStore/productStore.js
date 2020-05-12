@@ -20,7 +20,7 @@ class ProductStore{
     @action.bound
     init(){
         this.productList=[]
-       this.getProductListAPIStatus='API_INITIAL';
+       this.getProductListAPIStatus=API_INITIAL;
        this.getProductListAPIError=null;
        this.sortBy='SELECT';
        this.sizeFilter=[];
@@ -67,7 +67,16 @@ class ProductStore{
     
     @action.bound
     onSelectSize(value){
-        this.sizeFilter.push(value);
+        if(this.sizeFilter.includes(value)===false){
+              this.sizeFilter.push(value);
+        }
+        else{
+            let index=this.sizeFilter.findIndex(each=>{
+                each===value;
+            });
+            this.sizeFilter.splice(index,1);
+        }
+      this.sortedAndFilteredProducts;
     }
     
     @computed get products(){

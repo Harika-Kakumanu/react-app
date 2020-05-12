@@ -1,0 +1,1 @@
+export {ProductsRoute as default} from './ProductsRoute';

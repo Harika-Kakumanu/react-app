@@ -19,4 +19,4 @@ class ProductService{
             );
     }
 }
-export default ProductService;
+export {ProductService};

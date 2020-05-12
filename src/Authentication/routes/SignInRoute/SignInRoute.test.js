@@ -8,7 +8,7 @@ import { createMemoryHistory } from "history";
 import {
   E_COMMERCE_SIGN_IN_PATH,
   E_COMMERCE_PRODUCTS_PATH
-} from "../../../constants/RouteConstants";
+} from "../../../constants/RouteConstants.js";
 
 import AuthService from "../../services/AuthServices/index.api.js";
 import AuthStore from "../../stores/AuthStore/";
@@ -78,7 +78,7 @@ describe ('SignInRoute tests',()=>{
 
     fireEvent.change(usernameField, { target: { value: username } });
     fireEvent.change(passwordField, { target: { value: password } });
-    fireEvent.keyPress(signInButton, { key: "Enter", code: "Enter" });
+    // fireEvent.keyPress(signInButton, { key: "Enter", code: "Enter" });
 
     waitFor(() => getByLabelText("audio-loading"));
   });
@@ -120,8 +120,9 @@ describe ('SignInRoute tests',()=>{
               queryByRole,
               getByTestId,
               queryByLabelText,
-               }=render(
-                 <Provider authStore={authStore}>
+              getByText
+              }=render(
+                <Provider authStore={authStore}>
                     <Router history={history}>
                         <Route path={E_COMMERCE_SIGN_IN_PATH}>
                             <SignInRoute/>
@@ -130,14 +131,15 @@ describe ('SignInRoute tests',()=>{
                             <LocationDisplay/>
                         </Route>
                     </Router>
-                 </Provider>
-                 );
+                </Provider>
+                );
         const username='test-user';
         const password='test-password';
         
         const usernameField=getByPlaceholderText('UserName');
         const passwordField=getByPlaceholderText('Password');
-        const signInButton=getByRole('button',{name:'Sign In'});
+      const signInButton=getByRole('button',{name:'Sign In'});
+        // const signInButton = getByText(/Sign In/)
         
         const mockSuccessPromise=new Promise(function(resolve,reject){
           resolve(getUserSignInResponse);
@@ -147,9 +149,20 @@ describe ('SignInRoute tests',()=>{
         mockSignInAPI.mockReturnValue(mockSuccessPromise);
         authAPI.signInAPI=mockSignInAPI;
         
-        fireEvent.change(usernameField)
+        fireEvent.change(usernameField,{target:{value:username}});
+        fireEvent.change(passwordField,{target:{value:password}});
         
-    });
-    
-    
+       // fireEvent.click(signInButton);
+        
+    //     waitFor(()=>{
+    //       expect(
+    //         queryByRole("button",{name:"Sign In"})
+    //       ).not.toBeInTheDocument();
+          
+    //       expect(
+    //         getByTestId('location-display')).toHaveTextContent(
+    //           E_COMMERCE_PRODUCTS_PATH
+    //           );
+    //     });
+     });
 });

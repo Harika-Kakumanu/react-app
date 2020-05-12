@@ -6,6 +6,11 @@ import SignInForm from '../../components/SignInForm/';
 
 import { Redirect } from "react-router-dom";
 
+import {
+  E_COMMERCE_SIGN_IN_PATH,
+  E_COMMERCE_PRODUCTS_PATH
+} from "../../../constants/RouteConstants.js";
+
 
 @inject('authStore')
 @observer
@@ -44,7 +49,7 @@ class SignInRoute extends React.Component{
         {
             await this.getStore().userSignIn();
             if(getAccessToken() !== ''){
-                history.replace('/products-path');
+                history.replace(E_COMMERCE_PRODUCTS_PATH);
             }
         }
         else if(this.username===''){
@@ -68,8 +73,7 @@ class SignInRoute extends React.Component{
                             onChangeUserName={this.onChangeUserName}
                             onChangePassword={this.onChangePassword}
                             onSignInClick={this.onSignInClick}
-                           
-                            />);
+        />);
     }
 }
 export {SignInRoute};
