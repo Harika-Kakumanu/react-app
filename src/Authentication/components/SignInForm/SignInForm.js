@@ -10,7 +10,9 @@ import {DisplayErrorMessage,SignInPage,UserName,Password,SignInButton,Heading} f
 
 @observer
 class SignInForm extends React.Component{
+   
     userNameRef=React.createRef();
+   
     componentDidMount(){
         this.userNameRef.current.focus();
     }
@@ -37,6 +39,7 @@ class SignInForm extends React.Component{
                          placeholder='UserName'
                          onChange={onChangeUserName}/>
                     <Password 
+                        ref={this.props.passwordRef}
                         type='password' 
                         placeholder='Password' 
                         onChange={onChangePassword} 

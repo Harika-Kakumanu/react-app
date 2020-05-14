@@ -15,7 +15,9 @@ import {
 @inject('authStore')
 @observer
 class SignInRoute extends React.Component{
-
+    
+    passwordRef=React.createRef();
+   
     @observable username
     @observable password
     @observable errorMessage
@@ -43,7 +45,7 @@ class SignInRoute extends React.Component{
     
     @action.bound
    async onSignInClick(){
-          const {getSignInStatus}=this.props.authStore;
+         const {getSignInStatus}=this.props.authStore;
         let {history}=this.props;
         if(this.username !== '' && this.password !== '')
         {
@@ -57,6 +59,7 @@ class SignInRoute extends React.Component{
         }
         else if(this.password===''){
             this.errorMessage='Please enter password';
+            this.passwordRef.current.focus();
         }
         else{
             this.errorMessage='Please enter Valid data';
@@ -67,12 +70,13 @@ class SignInRoute extends React.Component{
         const {getSignInStatus}=this.props.authStore;
         return(
         <SignInForm username={this.username} 
-                             apiStatus={getSignInStatus}
+                            apiStatus={getSignInStatus}
                             password={this.password}
                             errorMessage={this.errorMessage}
                             onChangeUserName={this.onChangeUserName}
                             onChangePassword={this.onChangePassword}
                             onSignInClick={this.onSignInClick}
+                            passwordRef={this.passwordRef}
         />);
     }
 }
