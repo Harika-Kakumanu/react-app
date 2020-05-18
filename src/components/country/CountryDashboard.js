@@ -2,6 +2,7 @@ import React from 'react'
 import {Header} from './Header.js';
 import {CountriesFilterBar} from './Countriesfilterbar.js';
 import {Countries} from './countries.js';
+import {withCountries} from '../../common/hocs/CountriesHocs/withCountries.js';
 
 import './countrystyle.css'
 
@@ -10,7 +11,7 @@ class CountriesDashboardApp extends React.Component{
     constructor(props){
         super(props);
         this.state={
-        countries:[],
+        //countries:[],
         selectedTheme:'Light',
         searchText:'',
         selectedRegion:'All',
@@ -20,19 +21,26 @@ class CountriesDashboardApp extends React.Component{
         }
     }
     
-    componentDidMount(){
-        fetch('https://restcountries.eu/rest/v2/all')
-        .then((response) =>response.json())
-        .then(this.getCountries)
-    }
+    // componentDidMount(){
+    //     fetch('https://restcountries.eu/rest/v2/all')
+    //     .then((response) =>response.json())
+    //     .then(this.getCountries)
+    // }
     
-    getCountries=(allCountries)=>{
-        this.setState({
-            countries:allCountries,
-            filterCountries:allCountries,
-            loading:true,
-            })
-    }
+    // getCountries=(allCountries)=>{
+    //     this.setState({
+    //         countries:allCountries,
+    //         filterCountries:allCountries,
+    //         loading:true,
+    //         })
+    // }
+    
+     componentDidMount(){
+            this.setState({
+            filterCountries:this.props.countries,
+             loading:true,
+             });
+     }
     
     getRegionOptions=()=>{
         const regions=['All','Africa','Americas','Asia','Europe','Oceania']
@@ -43,7 +51,8 @@ class CountriesDashboardApp extends React.Component{
     }
     
     filterCountriesBySelectedRegion=(Region)=>{
-       const {searchText,countries}=this.state 
+       const {searchText}=this.state 
+       const {countries}=this.props
         if(Region==='All'){
             if(searchText==='')
             {
@@ -85,7 +94,9 @@ class CountriesDashboardApp extends React.Component{
     }
 
     filterCountriesBySearchText=(searchTextParam=>{
-       const{selectedRegion,countries}=this.state;
+       const{selectedRegion}=this.state;
+       
+       const {countries}=this.props
        // searchText=searchText.charAt(0).toUpperCase()+searchText.slice(1).toLowerCase();
         searchTextParam=searchTextParam.toLowerCase();
         if(selectedRegion==='All'){
@@ -148,9 +159,9 @@ class CountriesDashboardApp extends React.Component{
             filterCountriesBySearchText={this.filterCountriesBySearchText}
             filterCountriesBySelectedRegion={this.filterCountriesBySelectedRegion} />
             {notFound?<p className='not-found'>Country Not Found</p>:''}
-            <div >Loading...</div>
+            <div>Loading...</div>
            </div>
            ) 
       }
 }
-export default CountriesDashboardApp;
+export default withCountries(CountriesDashboardApp);

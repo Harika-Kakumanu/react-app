@@ -1,3 +1,49 @@
+
+// import React from "react";
+// import { render } from "react-dom";
+// import { observer } from "mobx-react";
+// import { observable } from "mobx";
+
+// class ThemeStore {
+//   @observable selectedTheme = "dark";
+
+//   onChange() {
+//     console.log("onChange selectedTheme");
+//     if (this.selectedTheme === "dark") {
+//       this.selectedTheme = "light";
+//     } else {
+//       this.selectedTheme = "dark";
+//     }
+//   }
+// }
+
+// const themeStore = new ThemeStore();
+
+// @observer
+// class ThemeButton extends React.Component {
+//   onChange() {
+//     const { onChange } = this.props.themeStore;
+//     onChange();
+//   }
+
+//   render() {
+//     const { selectedTheme } = this.props.themeStore;
+//     console.log("SelectedTheme:", selectedTheme);
+
+//     return <button onClick={this.onChange}>Change theme</button>;
+//   }
+// }
+
+// render( 
+//     <ThemeButton themeStore={themeStore} />,
+//   document.getElementById("root")
+// );
+
+
+
+
+
+
 import React,{Component} from 'react';
 import {observer,inject} from 'mobx-react';
 import LoadingWrapperWithFailure from '../common/LoadingWrapperWithFailure';
@@ -10,7 +56,7 @@ import NoDataView from '../common/NoDataView';
 class UsersPage extends Component{
     
     getUserStore=()=>{
-       return this.props.userStore
+      return this.props.userStore
     }
     
     componentDidMount(){
