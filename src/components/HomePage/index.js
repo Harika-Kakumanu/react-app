@@ -26,7 +26,8 @@ function App() {
           Learn React
         </a>
         
-         <Link to='/sign-in-auth'>Auth SignIn</Link>
+        <Link to='/practice-advanced-concepts'>Hoc's</Link>
+        <Link to='/sign-in-auth'>Auth SignIn</Link>
         <Link to='/login-page'>LoginForm</Link>
         <Link to="/todoNetworks">TodoApp With NetworkCalls</Link>  
         <Link to="/grid-game">Grid Memory Game</Link>  

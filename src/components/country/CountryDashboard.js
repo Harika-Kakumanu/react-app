@@ -35,9 +35,10 @@ class CountriesDashboardApp extends React.Component{
     //         })
     // }
     
-     componentDidMount(){
+      componentDidMount(){
+         const {countries}=this.props
             this.setState({
-            filterCountries:this.props.countries,
+            filterCountries:countries,
              loading:true,
              });
      }
@@ -95,8 +96,8 @@ class CountriesDashboardApp extends React.Component{
 
     filterCountriesBySearchText=(searchTextParam=>{
        const{selectedRegion}=this.state;
-       
        const {countries}=this.props
+       
        // searchText=searchText.charAt(0).toUpperCase()+searchText.slice(1).toLowerCase();
         searchTextParam=searchTextParam.toLowerCase();
         if(selectedRegion==='All'){
@@ -107,6 +108,7 @@ class CountriesDashboardApp extends React.Component{
                 filterCountries:selectedCountriesbyText,
                 searchText:searchTextParam,
                 },this.notFound)
+                console.log('selecct',selectedCountriesbyText);
         }
         else{
             let selectedCountriesbyText=countries.filter(eachCountry=>{
@@ -160,8 +162,8 @@ class CountriesDashboardApp extends React.Component{
             filterCountriesBySelectedRegion={this.filterCountriesBySelectedRegion} />
             {notFound?<p className='not-found'>Country Not Found</p>:''}
             <div>Loading...</div>
-           </div>
-           ) 
+          </div>
+          ) 
       }
 }
 export default withCountries(CountriesDashboardApp);

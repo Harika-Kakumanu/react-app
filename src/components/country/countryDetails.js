@@ -6,6 +6,8 @@ import {Header} from './Header.js';
 import {NavigateToBack,EachCountryDetails,ImageVersion2,
         CountryName,BorderButton,BorderCountries} from './countryStyle.js';
 
+import {withCountries} from '../../common/hocs/CountriesHocs/withCountries.js';
+
 class CountryDetails extends React.Component{
     constructor(props){
         super(props);
@@ -15,18 +17,27 @@ class CountryDetails extends React.Component{
             presentCountry: {}
         }
     }
-    componentDidMount=()=>{
-        fetch('https://restcountries.eu/rest/v2/all')
-        .then((response) =>response.json())
-        .then(this.getCountries)
-        this.setState({presentCountry: this.props.location.state});
-    }
+    // componentDidMount(){
+    //     fetch('https://restcountries.eu/rest/v2/all')
+    //     .then((response) =>response.json())
+    //     .then(this.getCountries)
+    //     this.setState({presentCountry: this.props.location.state});
+    // }
     
-    getCountries=(allCountries)=>{
-        this.setState({
-            countryDetails:allCountries,
-        })
-    }
+    // getCountries=(allCountries)=>{
+    //     this.setState({
+    //         countryDetails:allCountries,
+    //     })
+    // }
+        
+        componentDidMount(){
+            const {countries}=this.props;
+            this.setState({
+             countryDetails:countries,
+             presentCountry: this.props.location.state
+         })
+        }
+
 
     navigateBack=()=>{
         let {history}=this.props;
@@ -34,7 +45,8 @@ class CountryDetails extends React.Component{
     }
     
     navigateToSelectedBorderCountry=(e)=>{
-        let newCountry=this.state.countryDetails.filter(eachCountry=>
+        const {countryDetails}=this.state
+        let newCountry=countryDetails.filter(eachCountry=>
             eachCountry.alpha3Code === e.target.value
         );
         this.setState({
@@ -43,7 +55,8 @@ class CountryDetails extends React.Component{
     }
     
     eachBorderCountryName=(eachBorder)=>{
-       let borderName= this.state.countryDetails.map(eachCountry=> {
+         const {countryDetails}=this.state
+       let borderName= countryDetails.map(eachCountry=> {
             if(eachCountry.alpha3Code===eachBorder){
                 return eachCountry.name;
             }
@@ -82,11 +95,9 @@ class CountryDetails extends React.Component{
     render(){
         const { presentCountry,countryDetails}=this.state;
         const{onChangeTheme,selectedTheme}=this.props;
-         
-         if(
-             countryDetails.length!==0){
+         console.log('country details',countryDetails)
+         if(countryDetails.length!==0){
              
-        
         return(
             <div className={selectedTheme}>
             <Header  onChangeTheme={onChangeTheme} selectedTheme={selectedTheme}/>
@@ -120,4 +131,4 @@ class CountryDetails extends React.Component{
     return <h1>Loading...</h1>
     }
 }
-export default withRouter (CountryDetails);
+export default withRouter(withCountries(CountryDetails));

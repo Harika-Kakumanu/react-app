@@ -18,4 +18,4 @@ class Countries extends React.Component{
         )
     }
 }
-export{Countries}
+export {Countries};

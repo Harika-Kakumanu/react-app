@@ -23,8 +23,10 @@ function withCountries(WrappedComponent){
     }
         
     render(){
+        
          if(this.state.countries.length){
-             return <WrappedComponent countries={this.countries}/>;
+             
+             return <WrappedComponent countries={this.state.countries} {...this.props}/>;
          }
          else
          {

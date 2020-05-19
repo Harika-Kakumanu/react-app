@@ -23,7 +23,7 @@ import {Provider} from 'mobx-react';
 //import SignInForm from './Authentication/components/SignInForm/'
 import AuthRoutes from './Authentication/routes/AuthRoute.js';
 import routes from './Ecommerce/routes/ProductsPath/productsPath.js'
-
+import {PracticeAdvancedConceptsRoute} from './common/routes/PracticeAdvancedConceptsRoute.js'
 
 // const config = {
 //     predicate:()=>true,
@@ -84,7 +84,7 @@ render(){
         {AuthRoutes}
         {routes}
        
-        
+       <Route exact path='/practice-advanced-concepts' component ={PracticeAdvancedConceptsRoute}/> 
         <Route exact path='/users' component ={UsersPage}/>
         
         <Route exact path='/todoNetworks' component ={TodoAppNetwork}/>
