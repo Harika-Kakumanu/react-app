@@ -24,6 +24,7 @@ import {Provider} from 'mobx-react';
 import AuthRoutes from './Authentication/routes/AuthRoute.js';
 import routes from './Ecommerce/routes/ProductsPath/productsPath.js'
 import {PracticeAdvancedConceptsRoute} from './common/routes/PracticeAdvancedConceptsRoute.js'
+import {PractiseComponent} from './common/components/PractiseComponent.js';
 
 // const config = {
 //     predicate:()=>true,
@@ -83,7 +84,7 @@ render(){
         
         {AuthRoutes}
         {routes}
-       
+       <Route exact path='/practice-hocs-concepts' component ={PractiseComponent}/> 
        <Route exact path='/practice-advanced-concepts' component ={PracticeAdvancedConceptsRoute}/> 
         <Route exact path='/users' component ={UsersPage}/>
         

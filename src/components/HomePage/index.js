@@ -26,6 +26,7 @@ function App() {
           Learn React
         </a>
         
+        <Link to='/practice-hocs-concepts'>Practise Hoc's</Link>
         <Link to='/practice-advanced-concepts'>Hoc's</Link>
         <Link to='/sign-in-auth'>Auth SignIn</Link>
         <Link to='/login-page'>LoginForm</Link>
