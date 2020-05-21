@@ -21,7 +21,7 @@ onDecrement(){
 
 display= reaction (
     ()=>{
-      return this.count+10
+      return this.count+10;
     },
     (value,reaction)=>{
         console.log('count is :',value);

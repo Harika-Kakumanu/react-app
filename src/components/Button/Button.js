@@ -6,7 +6,7 @@ class Button extends React.Component{
         const {children}=this.props
         return(
             <div>
-                <button>{children[1]}</button>
+                <button>{children}</button>
             </div>
             );
     }
