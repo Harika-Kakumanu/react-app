@@ -51,7 +51,7 @@ render(){
     
 }
 
-export {CounterApp}
+export default CounterApp;
 
 
 
