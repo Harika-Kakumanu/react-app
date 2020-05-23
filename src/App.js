@@ -7,7 +7,7 @@ import Page1 from "./components/Page1";
 import CountriesDashboardApp from './components/country/CountryDashboard'
 import CountryDetails from './components/country/countryDetails'
 import {EmojiGame} from './components/EmojiGame/emojiGameComponent/emojiGame' 
-import {CounterApp} from './components/CounterApp/counterApp';
+//import {CounterApp} from './components/CounterApp/counterApp';
 import {TodoApp} from './components/TodoApp/TodoAppComponent/todoApp'
 import GridMemoryGame from './components/GridMemoryGamePage/GridMemoryGame/gridMemoryGame'
 import themeStore from './stores/ThemeStore'
@@ -24,7 +24,7 @@ import {Provider} from 'mobx-react';
 import AuthRoutes from './Authentication/routes/AuthRoute.js';
 import routes from './Ecommerce/routes/ProductsPath/productsPath.js'
 import {PracticeAdvancedConceptsRoute} from './common/routes/PracticeAdvancedConceptsRoute.js'
-import {PractiseComponent} from './common/components/PractiseComponent.js';
+//import {PractiseComponent} from './common/components/PractiseComponent.js';
 
 // const config = {
 //     predicate:()=>true,
@@ -84,7 +84,7 @@ render(){
         
         {AuthRoutes}
         {routes}
-       <Route exact path='/practice-hocs-concepts' component ={PractiseComponent}/> 
+       
        <Route exact path='/practice-advanced-concepts' component ={PracticeAdvancedConceptsRoute}/> 
         <Route exact path='/users' component ={UsersPage}/>
         
@@ -114,9 +114,6 @@ render(){
           <EmojiGame onChangeTheme={this.onChangeTheme} selectedTheme={this.themeOptions[this.getCurrentTheme()]}/>
         </Route>
         
-        <Route exact path='/counter-app'>
-          <CounterApp/>
-        </Route>
         
         <Route path='/'>
                   
@@ -131,3 +128,9 @@ render(){
 }
 
 export default App;
+// <Route exact path='/practice-hocs-concepts' component ={PractiseComponent}/>
+
+// <Route exact path='/counter-app'>
+//           <CounterApp/>
+//         </Route>
+       

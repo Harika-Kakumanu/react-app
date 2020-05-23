@@ -7,6 +7,7 @@ import Header from '../Header/';
 import SizeFilter from '../SizeFilter/';
 import ProductCart from '../../../CartModule/components/ProductCart/';
 import LoadingWrapperWithFailure from '../../../components/common/LoadingWrapperWithFailure'; 
+import Pagination from '../Pagination/'
 import {MainProductPage,MainHeader,SignOutButton,DisplaySizesAndProducts,
         DisplayProducts} from './styledComponents.js';
 
@@ -54,6 +55,7 @@ class ProductsPage extends React.Component{
                 </DisplayProducts>
 
           </DisplaySizesAndProducts>
+          <Pagination/>
         </MainProductPage>
             );
 
